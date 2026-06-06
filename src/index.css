@@ -71,13 +71,30 @@ html, body {
   color: #00FFF0;
 }
 
-/* Onboarding swipe hint animation */
-@keyframes swipeUp {
-  0%   { transform: translateY(0);   opacity: 0; }
-  20%  { opacity: 1; }
-  60%  { transform: translateY(-12px); opacity: 1; }
-  80%  { transform: translateY(-14px); opacity: 0; }
-  100% { transform: translateY(0);   opacity: 0; }
+/* Onboarding scroll hint — esteira do mouse */
+@keyframes beltDown {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(6px); }
+}
+
+/* Onboarding scroll hint — dedo swipe up (mobile) */
+@keyframes fingerSwipeUp {
+  0%   { transform: translateY(14px);  opacity: 0; }
+  10%  { transform: translateY(14px);  opacity: 1; }
+  68%  { transform: translateY(-14px); opacity: 1; }
+  82%  { transform: translateY(-14px); opacity: 0; }
+  83%  { transform: translateY(14px);  opacity: 0; }
+  100% { transform: translateY(14px);  opacity: 0; }
+}
+@keyframes fingerTrail {
+  0%, 8% { transform: translateY(14px); opacity: 0; }
+  25%    { opacity: 0.5; }
+  66%    { transform: translateY(-4px); opacity: 0; }
+  100%   { opacity: 0; }
+}
+@keyframes arrowFloat {
+  0%, 100% { transform: translateY(0);    opacity: 0.3; }
+  50%      { transform: translateY(-4px); opacity: 0.9; }
 }
 
 /* Tactile Brutalism — zero border-radius em inputs do painel */
