@@ -40,9 +40,9 @@ export default function Cursor() {
       <div ref={trailRef} className="fixed pointer-events-none z-40 w-1 h-1 rounded-full"
         style={{
           transform: 'translate(-50%, -50%)',
-          background: '#9B5FE3',
+          background: '#7B2FF7',
           opacity: 0.5,
-          boxShadow: '0 0 6px #9B5FE3',
+          boxShadow: '0 0 6px #7B2FF7',
         }}
       />
     </>

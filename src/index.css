@@ -31,9 +31,22 @@ html, body {
 
 /* Navegação por teclado — anel de foco visível apenas para keyboard users */
 :focus-visible {
-  outline: 2px solid #9B5FE3;
+  outline: 2px solid #7B2FF7;
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
+}
+
+/* Film grain overlay — tactile depth sem custo de GPU */
+#film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  mix-blend-mode: overlay;
 }
 :focus:not(:focus-visible) {
   outline: none;
@@ -49,11 +62,27 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7B2FBE;
-  border-radius: 2px;
+  background: #7B2FF7;
+  border-radius: 0;
 }
 
 ::selection {
   background: rgba(0, 212, 255, 0.3);
   color: #00FFF0;
+}
+
+/* Onboarding swipe hint animation */
+@keyframes swipeUp {
+  0%   { transform: translateY(0);   opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { transform: translateY(-12px); opacity: 1; }
+  80%  { transform: translateY(-14px); opacity: 0; }
+  100% { transform: translateY(0);   opacity: 0; }
+}
+
+/* Tactile Brutalism — zero border-radius em inputs do painel */
+[data-scroll-ignore] input,
+[data-scroll-ignore] textarea,
+[data-scroll-ignore] button:not([data-pill]) {
+  border-radius: 0 !important;
 }

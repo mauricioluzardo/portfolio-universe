@@ -23,7 +23,7 @@ const ZONES = [
     sub: 'Construo operações digitais completas — CRM, SaaS, e-commerce e IA — que escalam sem precisar de você no meio do processo. Cada planeta aqui é um sistema real.',
     micro: '5 anos · Live Academy Brasil · +10k usuários gerenciados por sistemas que eu mesmo construí',
     color: '#C77DFF',
-    glow: '#9B5FE3',
+    glow: '#7B2FF7',
   },
   {
     tMin: 0.19, tMax: 0.50, // SOLID: texto aparece 3 ticks antes do painel (t=0.22)
@@ -140,8 +140,8 @@ export default function SalesCopy() {
         {displayZone.line2}
       </div>
 
-      {/* Subtítulo */}
-      {!compact && (
+      {/* Subtítulo — desktop only */}
+      {!compact && !isMobile && (
         <div
           style={{
             fontSize: 'clamp(0.8rem, 1.3vw, 1rem)',
@@ -156,8 +156,8 @@ export default function SalesCopy() {
         </div>
       )}
 
-      {/* Micro copy / prova social */}
-      {!compact && (
+      {/* Micro copy / prova social — desktop only */}
+      {!compact && !isMobile && (
         <div
           style={{
             fontSize: 'clamp(0.7rem, 1vw, 0.82rem)',

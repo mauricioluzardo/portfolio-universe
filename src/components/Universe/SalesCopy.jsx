@@ -10,7 +10,7 @@ const COPY_BLOCKS = [
     lines: [
       { text: 'NÃO CRIO SITES.', size: 3.2, color: '#FFFFFF', y: 4.5 },
       { text: 'CRIO OPERAÇÕES.', size: 3.2, color: '#C77DFF', y: 0.5 },
-      { text: '5 anos · sistemas reais · resultados que escalam', size: 1.1, color: '#9B5FE3', y: -2.8 },
+      { text: '5 anos · sistemas reais · resultados que escalam', size: 1.1, color: '#7B2FF7', y: -2.8 },
       { text: 'Live Academy Brasil  ·  100+ usuários  ·  +1Bi diamantes gerados', size: 0.75, color: '#6B3FA0', y: -4.5 },
     ],
     fadeIn: 70, fadeOut: 22,

@@ -315,39 +315,50 @@ function Divider({ color }) {
 }
 
 function ImpactGrid({ metrics, accent }) {
-  // Separa métricas operacionais (primeiras 4) das de dados (restantes)
-  const ops  = metrics.slice(0, 4)
+  // Bento Grid 2026: primeiro item ocupa coluna dupla (hero stat), resto em grid 2×N
+  const [hero, ...rest] = metrics.slice(0, 4)
   const data = metrics.slice(4)
+  const cell = { border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.025)' }
   return (
-    <div className="space-y-3">
-      {/* Operacionais — 2 colunas, números grandes */}
-      <div className="grid grid-cols-2 gap-2">
-        {ops.map(({ value, label }) => (
-          <div key={label} style={{ padding: '14px 16px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <p style={{ fontSize: 'clamp(1.3rem, 4.5vw, 2rem)', fontWeight: 900, lineHeight: 1, color: accent, fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '-0.02em' }}>
+    <div style={{ display: 'grid', gap: 2 }}>
+      {/* Linha 1: hero stat (span 2) + segundo stat */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+        {/* Hero — col span via explicit sizing */}
+        {hero && (
+          <div style={{ ...cell, gridColumn: '1 / -1', padding: '16px 18px', display: 'flex', alignItems: 'baseline', gap: 10 }}>
+            <p style={{ fontSize: 'clamp(2rem, 7vw, 2.8rem)', fontWeight: 900, lineHeight: 1, color: accent, fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '-0.03em' }}>
+              {hero.value}
+            </p>
+            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.3, maxWidth: 120 }}>
+              {hero.label}
+            </p>
+          </div>
+        )}
+      </div>
+      {/* Linha 2+: resto das métricas em 2 colunas */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+        {rest.map(({ value, label }) => (
+          <div key={label} style={{ ...cell, padding: '12px 14px' }}>
+            <p style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.5rem)', fontWeight: 900, lineHeight: 1, color: accent, fontFamily: '"Space Grotesk", sans-serif', letterSpacing: '-0.02em' }}>
               {value}
             </p>
-            <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.65)', marginTop: 4, lineHeight: 1.3 }}>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', marginTop: 3, lineHeight: 1.3 }}>
               {label}
             </p>
           </div>
         ))}
       </div>
-      {/* Dados — 1 linha horizontal compacta */}
+      {/* Volume processado — linha separada */}
       {data.length > 0 && (
-        <div style={{ padding: '12px 16px', borderRadius: 8, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-          <p style={{ fontSize: '10px', letterSpacing: '0.25em', color: 'rgba(255,255,255,0.55)', fontFamily: '"JetBrains Mono", monospace', marginBottom: 10, textTransform: 'uppercase' }}>
+        <div style={{ ...cell, padding: '10px 14px', marginTop: 2 }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.3em', color: 'rgba(255,255,255,0.4)', fontFamily: '"JetBrains Mono", monospace', marginBottom: 8, textTransform: 'uppercase' }}>
             Volume processado
           </p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 16px' }}>
             {data.map(({ value, label }) => (
-              <div key={label} className="flex items-baseline gap-2">
-                <span style={{ fontSize: '15px', fontWeight: 700, color: 'rgba(255,255,255,0.85)', fontFamily: '"Space Grotesk", sans-serif' }}>
-                  {value}
-                </span>
-                <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.62)' }}>
-                  {label}
-                </span>
+              <div key={label} style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+                <span style={{ fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,0.85)', fontFamily: '"Space Grotesk", sans-serif' }}>{value}</span>
+                <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.55)' }}>{label}</span>
               </div>
             ))}
           </div>
@@ -371,7 +382,7 @@ function ModuleList({ modules, accent = '#42BFDD' }) {
               {i > 0 && <div style={{ height: 1, background: 'rgba(255,255,255,0.04)', margin: '12px 0' }} />}
               <div className="flex gap-3 items-center">
                 {/* SVG ilustrado — fundo e cores próprias */}
-                <div style={{ flexShrink: 0, borderRadius: 9, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
+                <div style={{ flexShrink: 0, borderRadius: 0, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.6)' }}>
                   {IconSVG && <IconSVG size={36} />}
                 </div>
                 <div>
@@ -421,7 +432,7 @@ function ProjectCard({ project }) {
         <ScreenshotHero images={project.images} project={project} />
       )}
       {!project.images?.length && (
-        <div style={{ aspectRatio: '16/9', borderRadius: 8, background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
+        <div style={{ aspectRatio: '16/9', borderRadius: 0, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
           <span style={{ fontSize: 11, color: textMuted, fontFamily: titleFont }}>screenshots em breve</span>
         </div>
       )}
@@ -472,7 +483,7 @@ function ProjectCard({ project }) {
         {project.tech.map(tech => (
           <span key={tech} style={{
             fontSize: '11px', padding: '2px 8px',
-            borderRadius: tagRadius === 2 ? 2 : 9999,
+            borderRadius: 0,
             color: tagColor, background: tagBg, border: tagBorder,
             fontFamily: tagFont, fontWeight: 600,
             letterSpacing: '0.025em', lineHeight: '1.6',
@@ -502,7 +513,7 @@ function HeroContent() {
           { n: '+1Bi', label: 'resultados gerados' },
           { n: '5+',   label: 'anos de operação' },
         ].map(({ n, label }) => (
-          <div key={label} className="rounded-lg p-2 text-center" style={{ background: 'rgba(155,95,227,0.1)', border: '1px solid rgba(155,95,227,0.2)' }}>
+          <div key={label} className="p-2 text-center" style={{ background: 'rgba(123,47,247,0.08)', border: '1px solid rgba(123,47,247,0.25)' }}>
             <p className="text-lg font-bold text-violet-300">{n}</p>
             <p className="text-[10px] text-gray-400 leading-tight">{label}</p>
           </div>
@@ -623,8 +634,8 @@ function ContactContent() {
         </p>
         <div className="space-y-2">
           {PROJECTS_WIP.map(p => (
-            <div key={p.id} className="flex items-center gap-3 p-2.5 rounded-lg"
-              style={{ background: `${p.glowColor}10`, border: `1px solid ${p.glowColor}25` }}>
+            <div key={p.id} className="flex items-center gap-3 p-2.5"
+              style={{ background: `${p.glowColor}08`, border: `1px solid ${p.glowColor}30` }}>
               <div className="w-2 h-2 rounded-full shrink-0 animate-pulse"
                 style={{ background: p.glowColor }} />
               <div>
@@ -636,7 +647,7 @@ function ContactContent() {
             </div>
           ))}
           {/* Slot para o projeto do visitante */}
-          <div className="flex items-center gap-3 p-2.5 rounded-lg border border-dashed border-white/15">
+          <div className="flex items-center gap-3 p-2.5 border border-dashed border-white/15">
             <div className="w-2 h-2 rounded-full shrink-0 bg-white/20" />
             <p className="text-gray-500 text-xs italic">Seu projeto aqui →</p>
           </div>
@@ -684,7 +695,7 @@ function ContactContent() {
             <div key={f.id}>
               <label htmlFor={f.id} className="text-xs text-cyan-400 uppercase tracking-wider">{f.label}</label>
               <input id={f.id} name={f.name} type={f.type} autoComplete={f.autoComplete} required
-                className="w-full mt-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-cyan-400/60 transition-colors"
+                className="w-full mt-1 px-4 py-2.5 bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400/60 transition-colors"
                 placeholder={f.placeholder} style={{ pointerEvents: 'auto' }} />
             </div>
           ))}
@@ -749,7 +760,7 @@ export default function SectionPanel() {
   const ps          = project?.panelStyle
   const panelBg     = ps?.bg     || '#080808'
   const panelBorder = ps?.border || 'rgba(155,95,227,0.2)'
-  const accent      = ps?.accent || '#9B5FE3'
+  const accent      = ps?.accent || '#7B2FF7'
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 640)

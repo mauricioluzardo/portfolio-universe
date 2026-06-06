@@ -7,6 +7,7 @@ import HUD from './components/UI/HUD'
 import SalesCopy from './components/UI/SalesCopy'
 import SectionPanel from './components/UI/SectionPanel'
 import Cursor from './components/UI/Cursor'
+import PlanetDots from './components/UI/PlanetDots'
 
 function Loader() {
   const { active, progress } = useProgress()
@@ -24,7 +25,7 @@ function Loader() {
       <div className="animate-spin" style={{
         width: 36, height: 36, borderRadius: '50%',
         border: '2px solid rgba(155,95,227,0.12)',
-        borderTop: '2px solid #9B5FE3',
+        borderTop: '2px solid #7B2FF7',
       }} />
       <p style={{
         color: 'rgba(255,255,255,0.28)', fontSize: 10,
@@ -63,8 +64,10 @@ export default function App() {
         <SalesCopy />
         <SectionPanel />
       </div>
+      <PlanetDots />
       <Cursor />
       <Loader />
+      <div id="film-grain" aria-hidden="true" />
     </div>
   )
 }

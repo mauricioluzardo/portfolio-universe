@@ -176,7 +176,7 @@ export const PROJECTS_WIP = [
     tech: ['React 19', 'Vite', 'Supabase', 'Framer Motion', 'TailwindCSS'],
     status: 'wip',
     color: '#2D1B69',
-    glowColor: '#9B5FE3',
+    glowColor: '#7B2FF7',
     link: 'https://influenciaja.com.br',
     stats: 'SaaS B2B · IA integrada · 2025',
     images: [],
