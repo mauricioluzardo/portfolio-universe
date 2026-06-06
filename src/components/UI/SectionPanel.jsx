@@ -747,6 +747,14 @@ const PLANET_PROJECT = {
   wip:      () => PROJECTS_DONE.find(p => p.id === 'voigt'),
 }
 
+const PLANET_ORDER = ['hero', 'projects', 'wip', 'contact']
+const PLANET_META = {
+  hero:     { label: 'Início',  color: '#7B2FF7', t: 0.10 },
+  projects: { label: 'SOLID',   color: '#42BFDD', t: 0.30 },
+  wip:      { label: 'Voigt',   color: '#39FF14', t: 0.62 },
+  contact:  { label: 'Contato', color: '#00FFF0', t: 0.88 },
+}
+
 export default function SectionPanel() {
   const panelRef    = useRef()
   const innerRef    = useRef()
@@ -754,6 +762,20 @@ export default function SectionPanel() {
   const swipeStartScroll = useRef(0)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640)
   const { activePlanet, panelOpen, closePanel } = useUniverseStore()
+
+  const currentIdx  = activePlanet ? PLANET_ORDER.indexOf(activePlanet) : -1
+  const nextPlanet  = currentIdx >= 0 && currentIdx < PLANET_ORDER.length - 1
+    ? PLANET_ORDER[currentIdx + 1] : null
+
+  const handleNextPlanet = () => {
+    if (!nextPlanet) return
+    closePanel()
+    setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('navigateToPlanet', {
+        detail: { t: PLANET_META[nextPlanet].t },
+      }))
+    }, 300)
+  }
   const Content = activePlanet ? PANEL_CONTENT[activePlanet] : null
 
   const project     = PLANET_PROJECT[activePlanet]?.()
@@ -887,13 +909,25 @@ export default function SectionPanel() {
               position: 'absolute', top: 0, left: 0, right: 0, height: 2,
               background: `linear-gradient(90deg, transparent, ${accent}99, transparent)`,
             }} />
-            <div style={{ display: 'flex', alignItems: 'center', paddingTop: 8 }}>
-              {/* Drag handle — centered */}
-              <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-                <div style={{
-                  width: 40, height: 4, borderRadius: 2,
-                  background: 'rgba(255,255,255,0.18)',
-                }} />
+            <div style={{ display: 'flex', alignItems: 'center', paddingTop: 8, gap: 8 }}>
+              {/* Planet progress dots — universally shows "you are on X of 4" */}
+              <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10 }}>
+                {PLANET_ORDER.map(pid => {
+                  const isCurrent = pid === activePlanet
+                  const meta = PLANET_META[pid]
+                  return (
+                    <div key={pid} style={{
+                      width:  isCurrent ? 9 : 6,
+                      height: isCurrent ? 9 : 6,
+                      borderRadius: '50%',
+                      background: isCurrent ? meta.color : 'transparent',
+                      border: `1.5px solid ${isCurrent ? meta.color : 'rgba(255,255,255,0.2)'}`,
+                      boxShadow: isCurrent ? `0 0 10px ${meta.color}AA` : 'none',
+                      transition: 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)',
+                      flexShrink: 0,
+                    }} />
+                  )
+                })}
               </div>
               {/* Close button */}
               <button onClick={closePanel} aria-label="Fechar painel" style={{
@@ -919,6 +953,62 @@ export default function SectionPanel() {
           </button>
         )}
         {Content && <Content />}
+
+        {/* ── Next planet CTA — mobile only ── */}
+        {isMobile && (
+          <div style={{ marginTop: 32, paddingBottom: 8 }}>
+            {nextPlanet ? (
+              <button
+                onClick={handleNextPlanet}
+                style={{
+                  width: '100%',
+                  padding: '16px 20px',
+                  background: `${PLANET_META[nextPlanet].color}08`,
+                  border: `1px solid ${PLANET_META[nextPlanet].color}40`,
+                  borderRadius: 0,
+                  color: PLANET_META[nextPlanet].color,
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: 11,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  pointerEvents: 'auto',
+                }}
+              >
+                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 9, letterSpacing: '0.2em' }}>
+                  próximo mundo
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span
+                    style={{
+                      width: 7, height: 7, borderRadius: '50%',
+                      background: PLANET_META[nextPlanet].color,
+                      boxShadow: `0 0 8px ${PLANET_META[nextPlanet].color}`,
+                      display: 'inline-block',
+                      flexShrink: 0,
+                    }}
+                  />
+                  {PLANET_META[nextPlanet].label} →
+                </span>
+              </button>
+            ) : (
+              /* No último planeta — convite para contato */
+              <div style={{
+                width: '100%', padding: '14px 20px',
+                border: '1px solid rgba(255,255,255,0.06)',
+                borderRadius: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              }}>
+                <span style={{ fontSize: 8, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.2)', fontFamily: '"JetBrains Mono",monospace', textTransform: 'uppercase' }}>
+                  fim do universo · por enquanto
+                </span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

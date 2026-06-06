@@ -128,13 +128,19 @@ export default function ScrollCamera() {
       ))
       targetProgress.current = accumulated.current
     }
-    window.addEventListener('wheel',      onWheel,      { passive: true })
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove',  onTouchMove,  { passive: true })
+    const onNavigate = (e) => {
+      accumulated.current    = e.detail.t
+      targetProgress.current = e.detail.t
+    }
+    window.addEventListener('wheel',           onWheel,      { passive: true })
+    window.addEventListener('touchstart',      onTouchStart, { passive: true })
+    window.addEventListener('touchmove',       onTouchMove,  { passive: true })
+    window.addEventListener('navigateToPlanet', onNavigate)
     return () => {
-      window.removeEventListener('wheel',      onWheel)
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove',  onTouchMove)
+      window.removeEventListener('wheel',           onWheel)
+      window.removeEventListener('touchstart',      onTouchStart)
+      window.removeEventListener('touchmove',       onTouchMove)
+      window.removeEventListener('navigateToPlanet', onNavigate)
     }
   }, [setScrollProgress])
 
