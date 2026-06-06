@@ -148,12 +148,19 @@ function ScreenshotHero({ images, project }) {
   const theme   = project?.thumbTheme
   const primary = theme?.primary || project?.glowColor || '#00FFF0'
 
-  const LABELS = [
-    'Dashboard Operacional', 'Motor T1/T2/T3', 'Base de Streamers',
-    'Perfil Individual', 'Pipeline de Prospecção', 'Atendimento WhatsApp',
-    'CEO Intelligence', 'OPS Workspace', 'Leaderboard',
-    'Simulador Financeiro', 'Central de Alertas',
-  ]
+  const LABELS_BY_PROJECT = {
+    solid: [
+      'Dashboard Operacional', 'Motor T1/T2/T3', 'Base de Streamers',
+      'Perfil Individual', 'Pipeline de Prospecção', 'Atendimento WhatsApp',
+      'CEO Intelligence', 'OPS Workspace', 'Leaderboard',
+      'Simulador Financeiro', 'Central de Alertas',
+    ],
+    voigt: [
+      'Vitrine — Hero', 'Mais Vendidos', 'Página de Categoria',
+      'Dashboard Admin', 'Gestão de Produtos',
+    ],
+  }
+  const LABELS = LABELS_BY_PROJECT[project?.id] || []
 
   // Resolve tokens do modo (dark/light) com base no código-fonte do sistema original
   function modeTokens(isDark) {
