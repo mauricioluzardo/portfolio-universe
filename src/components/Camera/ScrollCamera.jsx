@@ -124,7 +124,7 @@ export default function ScrollCamera() {
       const delta = touchY.current - e.touches[0].clientY
       touchY.current = e.touches[0].clientY
       accumulated.current = Math.max(0, Math.min(1,
-        accumulated.current + delta * SCROLL_SENSITIVITY * 3
+        accumulated.current + delta * SCROLL_SENSITIVITY * 1.4
       ))
       targetProgress.current = accumulated.current
     }

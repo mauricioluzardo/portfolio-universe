@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useUniverseStore } from '../../store/universeStore'
 
 // ─── TIMING MASTER TABLE ──────────────────────────────────────────────────────
@@ -57,6 +57,12 @@ const ZONES = [
 export default function SalesCopy() {
   const { scrollProgress, panelOpen } = useUniverseStore()
   const lastZoneRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640)
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   const zone = ZONES.find(z => scrollProgress >= z.tMin && scrollProgress <= z.tMax)
   if (zone) lastZoneRef.current = zone
@@ -78,14 +84,18 @@ export default function SalesCopy() {
 
   const compact = panelOpen
 
+  // Mobile: texto no topo (acima do planeta) — desktop: centro vertical
+  const topPos   = isMobile ? '12%' : '50%'
+  const transform = isMobile ? 'none' : 'translateY(-50%)'
+
   return (
     <div
       className="fixed z-20 select-none pointer-events-none"
       style={{
-        left: compact ? '1.25rem' : '2.5rem',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        maxWidth: compact ? 'min(280px, calc(100vw - 2.5rem))' : 'min(520px, calc(100vw - 2.5rem))',
+        left: compact ? '1.25rem' : (isMobile ? '1rem' : '2.5rem'),
+        top: topPos,
+        transform,
+        maxWidth: compact ? 'min(280px, calc(100vw - 2.5rem))' : (isMobile ? 'calc(100vw - 2rem)' : 'min(520px, calc(100vw - 2.5rem))'),
         opacity,
         // Assimétrico: entra rápido (JS controla), sai rápido (texto do planeta anterior some logo)
         transition: zone
@@ -100,7 +110,7 @@ export default function SalesCopy() {
       {/* Linha 1 */}
       <div
         style={{
-          fontSize: compact ? '1.6rem' : 'clamp(2rem, 4vw, 3.4rem)',
+          fontSize: compact ? '1.6rem' : (isMobile ? 'clamp(1.6rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3.4rem)'),
           fontWeight: 900,
           fontFamily: '"Space Grotesk", sans-serif',
           letterSpacing: '0.06em',
@@ -116,7 +126,7 @@ export default function SalesCopy() {
       {/* Linha 2 — cor do planeta */}
       <div
         style={{
-          fontSize: compact ? '1.6rem' : 'clamp(2rem, 4vw, 3.4rem)',
+          fontSize: compact ? '1.6rem' : (isMobile ? 'clamp(1.6rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3.4rem)'),
           fontWeight: 900,
           fontFamily: '"Space Grotesk", sans-serif',
           letterSpacing: '0.06em',

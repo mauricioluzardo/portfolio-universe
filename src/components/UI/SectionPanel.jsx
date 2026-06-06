@@ -8,8 +8,8 @@ import { useUniverseStore } from '../../store/universeStore'
 import { OWNER, PROJECTS_DONE, PROJECTS_WIP } from '../../data/portfolio'
 
 // â"€â"€â"€ Design System â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
-// PrincÃ­pios: Agency Case Study + Stripe Impact Numbers + Linear whitespace
-// Screenshot primeiro â†' hook â†' nÃºmeros grandes â†' mÃ³dulos â†' galeria
+// Princípios: Agency Case Study + Stripe Impact Numbers + Linear whitespace
+// Screenshot primeiro → hook → números grandes → módulos → galeria
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
 // Normaliza images: aceita strings (legado) ou objetos { src, mode }
@@ -150,12 +150,12 @@ function ScreenshotHero({ images, project }) {
 
   const LABELS = [
     'Dashboard Operacional', 'Motor T1/T2/T3', 'Base de Streamers',
-    'Perfil Individual', 'Pipeline de ProspecÃ§Ã£o', 'Atendimento WhatsApp',
+    'Perfil Individual', 'Pipeline de Prospecção', 'Atendimento WhatsApp',
     'CEO Intelligence', 'OPS Workspace', 'Leaderboard',
     'Simulador Financeiro', 'Central de Alertas',
   ]
 
-  // Resolve tokens do modo (dark/light) com base no cÃ³digo-fonte do sistema original
+  // Resolve tokens do modo (dark/light) com base no código-fonte do sistema original
   function modeTokens(isDark) {
     if (!theme) return null
     return isDark ? theme.dark : theme.light
@@ -166,7 +166,7 @@ function ScreenshotHero({ images, project }) {
 
   return (
     <div className="mb-6">
-      {/* Hero â€" imagem principal com setas */}
+      {/* Hero — imagem principal com setas */}
       <div className="relative w-full overflow-hidden"
         style={{ aspectRatio: '16/9', borderRadius: '8px', background: theme?.dark?.card || '#0a0a0f' }}>
         <img src={imgs[current].src} alt=""
@@ -202,7 +202,7 @@ function ScreenshotHero({ images, project }) {
           </button>
         )}
 
-        {/* Barra inferior â€" label + contador */}
+        {/* Barra inferior — label + contador */}
         <div className="absolute bottom-0 left-0 right-0 px-3 py-2 flex items-center justify-between"
           style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%)' }}>
           <span style={{ fontSize: '11px', fontFamily: '"Inter",ui-sans-serif', fontWeight: 500, color: 'rgba(255,255,255,0.8)' }}>
@@ -234,7 +234,7 @@ function ScreenshotHero({ images, project }) {
               </button>
             )
 
-            // Voigt: renderiza product card exato do site (nÃ£o screenshot genÃ©rico)
+            // Voigt: renderiza product card exato do site (não screenshot genérico)
             if (project?.id === 'voigt') {
               return <VoigtThumbCard key={i} img={img} index={i} isActive={isActive} onClick={() => setCurrent(i)} />
             }
@@ -260,13 +260,13 @@ function ScreenshotHero({ images, project }) {
                 transition: 'all 200ms cubic-bezier(0.4,0,0.2,1)',
                 cursor: 'pointer',
               }}>
-                {/* Screenshot â€" 76px Ã— 43px (16:9) */}
+                {/* Screenshot — 76px × 43px (16:9) */}
                 <div style={{ width: 76, height: 43, overflow: 'hidden', flexShrink: 0 }}>
                   <img src={img.src} alt=""
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
                 </div>
 
-                {/* Footer â€" identidade do sistema (fundo, texto, dot) */}
+                {/* Footer — identidade do sistema (fundo, texto, dot) */}
                 <div style={{
                   height: 14, background: t.cardLow, borderTop: `1px solid ${t.border}`,
                   display: 'flex', alignItems: 'center', paddingLeft: 6, gap: 4,
@@ -284,7 +284,7 @@ function ScreenshotHero({ images, project }) {
                   }} />
                 </div>
 
-                {/* Linha indicadora â€" primary color do sistema */}
+                {/* Linha indicadora — primary color do sistema */}
                 {isActive && (
                   <div style={{
                     position: 'absolute', bottom: 0, left: 0, right: 0,
@@ -315,12 +315,12 @@ function Divider({ color }) {
 }
 
 function ImpactGrid({ metrics, accent }) {
-  // Separa mÃ©tricas operacionais (primeiras 4) das de dados (restantes)
+  // Separa métricas operacionais (primeiras 4) das de dados (restantes)
   const ops  = metrics.slice(0, 4)
   const data = metrics.slice(4)
   return (
     <div className="space-y-3">
-      {/* Operacionais â€" 2 colunas, nÃºmeros grandes */}
+      {/* Operacionais — 2 colunas, números grandes */}
       <div className="grid grid-cols-2 gap-2">
         {ops.map(({ value, label }) => (
           <div key={label} style={{ padding: '14px 16px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -333,7 +333,7 @@ function ImpactGrid({ metrics, accent }) {
           </div>
         ))}
       </div>
-      {/* Dados â€" 1 linha horizontal compacta */}
+      {/* Dados — 1 linha horizontal compacta */}
       {data.length > 0 && (
         <div style={{ padding: '12px 16px', borderRadius: 8, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
           <p style={{ fontSize: '10px', letterSpacing: '0.25em', color: 'rgba(255,255,255,0.55)', fontFamily: '"JetBrains Mono", monospace', marginBottom: 10, textTransform: 'uppercase' }}>
@@ -361,7 +361,7 @@ function ModuleList({ modules, accent = '#42BFDD' }) {
   return (
     <div>
       <p style={{ fontSize: '10px', letterSpacing: '0.3em', color: 'rgba(255,255,255,0.55)', fontFamily: '"JetBrains Mono", monospace', textTransform: 'uppercase', marginBottom: 14 }}>
-        MÃ³dulos do sistema
+        Módulos do sistema
       </p>
       <div>
         {modules.map(({ icon, name, desc }, i) => {
@@ -370,7 +370,7 @@ function ModuleList({ modules, accent = '#42BFDD' }) {
             <div key={name}>
               {i > 0 && <div style={{ height: 1, background: 'rgba(255,255,255,0.04)', margin: '12px 0' }} />}
               <div className="flex gap-3 items-center">
-                {/* SVG ilustrado â€" fundo e cores prÃ³prias */}
+                {/* SVG ilustrado — fundo e cores próprias */}
                 <div style={{ flexShrink: 0, borderRadius: 9, overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
                   {IconSVG && <IconSVG size={36} />}
                 </div>
@@ -490,17 +490,17 @@ function HeroContent() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-xs tracking-[0.4em] text-cyan-400 uppercase mb-2">Sistemas Â· IA Â· OperaÃ§Ãµes Digitais</p>
+        <p className="text-xs tracking-[0.4em] text-cyan-400 uppercase mb-2">Sistemas · IA · Operações Digitais</p>
         <h1 className="text-3xl font-bold text-white leading-tight">{OWNER.name}</h1>
         <p className="text-base text-violet-300 mt-1">{OWNER.title}</p>
       </div>
 
-      {/* NÃºmeros de impacto */}
+      {/* Números de impacto */}
       <div className="grid grid-cols-3 gap-2">
         {[
           { n: '+10k', label: 'streamers gerenciados' },
           { n: '+1Bi', label: 'resultados gerados' },
-          { n: '5+',   label: 'anos de operaÃ§Ã£o' },
+          { n: '5+',   label: 'anos de operação' },
         ].map(({ n, label }) => (
           <div key={label} className="rounded-lg p-2 text-center" style={{ background: 'rgba(155,95,227,0.1)', border: '1px solid rgba(155,95,227,0.2)' }}>
             <p className="text-lg font-bold text-violet-300">{n}</p>
@@ -515,7 +515,7 @@ function HeroContent() {
       <div className="space-y-2">
         {OWNER.description.map((line, i) => (
           <p key={i} className="text-gray-300 text-sm leading-relaxed flex items-start gap-2">
-            <span className="text-cyan-400 mt-1 shrink-0">â–¸</span>
+            <span className="text-cyan-400 mt-1 shrink-0">▸</span>
             {line}
           </p>
         ))}
@@ -534,14 +534,14 @@ function HeroContent() {
         </a>
         <a href={`mailto:${OWNER.social.email}`}
           className="px-4 py-2 bg-violet-500/15 border border-violet-500/50 text-violet-200 rounded-lg text-sm font-medium hover:bg-violet-500/25 transition-all" style={{ pointerEvents: 'auto' }}>
-          Conversar â†'
+          Conversar →
         </a>
       </div>
     </div>
   )
 }
 
-// Planeta 2 â€" SOLID dedicado
+// Planeta 2 — SOLID dedicado
 function ProjectsContent() {
   const solid = PROJECTS_DONE.find(p => p.id === 'solid')
   const ps    = solid?.panelStyle
@@ -583,7 +583,7 @@ function WIPContent() {
   )
 }
 
-// Planeta 4 â€" FaÃ§a Parte / Contato
+// Planeta 4 — Faça Parte / Contato
 function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
 
@@ -605,21 +605,21 @@ function ContactContent() {
       {/* Headline */}
       <div>
         <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-cyan-400 mb-2">
-          Esta constelaÃ§Ã£o estÃ¡ crescendo
+          Esta constelação está crescendo
         </p>
         <h2 className="text-2xl font-bold text-white leading-tight">
           Venha fazer parte.
         </h2>
         <p className="text-gray-300 text-sm mt-2 leading-relaxed">
-          Cada planeta aqui foi construÃ­do do zero â€" sistema real, em produÃ§Ã£o,
-          com resultado mensurÃ¡vel. O prÃ³ximo pode ser o seu projeto.
+          Cada planeta aqui foi construído do zero — sistema real, em produção,
+          com resultado mensurável. O próximo pode ser o seu projeto.
         </p>
       </div>
 
-      {/* PrÃ³ximos planetas em formaÃ§Ã£o */}
+      {/* Próximos planetas em formação */}
       <div>
         <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 font-mono">
-          Planetas em formaÃ§Ã£o
+          Planetas em formação
         </p>
         <div className="space-y-2">
           {PROJECTS_WIP.map(p => (
@@ -638,7 +638,7 @@ function ContactContent() {
           {/* Slot para o projeto do visitante */}
           <div className="flex items-center gap-3 p-2.5 rounded-lg border border-dashed border-white/15">
             <div className="w-2 h-2 rounded-full shrink-0 bg-white/20" />
-            <p className="text-gray-500 text-xs italic">Seu projeto aqui â†'</p>
+            <p className="text-gray-500 text-xs italic">Seu projeto aqui →</p>
           </div>
         </div>
       </div>
@@ -647,19 +647,19 @@ function ContactContent() {
       <div className="space-y-1.5">
         {[
           'Site ou sistema completo do zero',
-          'IA integrada Ã  operaÃ§Ã£o (Claude, OpenAI)',
+          'IA integrada à operação (Claude, OpenAI)',
           'CRM, ERP ou plataforma SaaS',
-          'AutomaÃ§Ãµes que eliminam trabalho manual',
-          'EstratÃ©gia digital + execuÃ§Ã£o tÃ©cnica',
+          'Automações que eliminam trabalho manual',
+          'Estratégia digital + execução técnica',
         ].map(item => (
           <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
-            <span className="text-cyan-400 shrink-0 text-xs">â–¸</span>
+            <span className="text-cyan-400 shrink-0 text-xs">▸</span>
             {item}
           </div>
         ))}
       </div>
 
-      {/* FormulÃ¡rio */}
+      {/* Formulário */}
       {submitted ? (
         <div className="rounded-xl p-5 text-center space-y-3"
           style={{ background: 'rgba(0,255,240,0.06)', border: '1px solid rgba(0,255,240,0.2)' }}>
@@ -702,7 +702,7 @@ function ContactContent() {
               color: '#fff',
               pointerEvents: 'auto',
             }}>
-            Quero fazer parte desta constelaÃ§Ã£o â†'
+            Quero fazer parte desta constelação →
           </button>
         </form>
       )}
@@ -711,7 +711,7 @@ function ContactContent() {
         <a href={`mailto:${OWNER.social.email}`}
           className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
           style={{ pointerEvents: 'auto' }}>
-          <span className="text-cyan-400">âœ‰</span> {OWNER.social.email}
+          <span className="text-cyan-400">✉</span> {OWNER.social.email}
         </a>
         <a href={OWNER.social.linkedin} target="_blank" rel="noreferrer"
           className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
@@ -737,7 +737,10 @@ const PLANET_PROJECT = {
 }
 
 export default function SectionPanel() {
-  const panelRef = useRef()
+  const panelRef    = useRef()
+  const innerRef    = useRef()
+  const swipeStartY = useRef(null)
+  const swipeStartScroll = useRef(0)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640)
   const { activePlanet, panelOpen, closePanel } = useUniverseStore()
   const Content = activePlanet ? PANEL_CONTENT[activePlanet] : null
@@ -815,11 +818,37 @@ export default function SectionPanel() {
   return (
     <div ref={panelRef} data-scroll-ignore style={containerStyle}>
       <div
+        ref={innerRef}
         role="dialog"
         aria-modal="true"
         aria-label="Detalhes do projeto"
-        onTouchStart={e => e.stopPropagation()}
-        onTouchMove={e => e.stopPropagation()}
+        onTouchStart={e => {
+          e.stopPropagation()
+          if (isMobile) {
+            swipeStartY.current = e.touches[0].clientY
+            swipeStartScroll.current = innerRef.current?.scrollTop || 0
+          }
+        }}
+        onTouchMove={e => {
+          e.stopPropagation()
+          if (!isMobile || swipeStartY.current === null) return
+          const deltaY = e.touches[0].clientY - swipeStartY.current
+          const isAtTop = (innerRef.current?.scrollTop || 0) <= 0 && swipeStartScroll.current <= 0
+          if (isAtTop && deltaY > 0 && panelRef.current) {
+            gsap.set(panelRef.current, { y: Math.min(deltaY * 0.6, 200) })
+          }
+        }}
+        onTouchEnd={e => {
+          if (!isMobile || swipeStartY.current === null) return
+          const deltaY = (e.changedTouches[0]?.clientY || 0) - swipeStartY.current
+          const isAtTop = swipeStartScroll.current <= 0
+          swipeStartY.current = null
+          if (isAtTop && deltaY > 80) {
+            closePanel()
+          } else if (panelRef.current) {
+            gsap.to(panelRef.current, { y: 0, duration: 0.25, ease: 'power3.out' })
+          }
+        }}
         style={{
           height: '100%',
           overflowY: 'auto',
