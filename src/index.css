@@ -19,11 +19,6 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Cursor customizado apenas em dispositivos com mouse real */
-@media (hover: hover) and (pointer: fine) {
-  html, body { cursor: none; }
-}
-
 #root {
   width: 100%;
   height: 100%;

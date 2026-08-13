@@ -31,11 +31,19 @@ export default function Universe() {
         <StarField count={12000} />
       </Suspense>
 
-      {/* 4 planetas com texturas PBR reais */}
+      {/* 4 planetas com texturas PBR reais.
+          Um Suspense por planeta: cada um aparece assim que SUAS texturas chegam,
+          em vez de esperar o conjunto inteiro (o Hero é o primeiro na câmera). */}
       <Suspense fallback={null}>
         <HeroPlanet     position={[0,   0,   0]}   />
+      </Suspense>
+      <Suspense fallback={null}>
         <ProjectsPlanet position={[-70, 8,  -60]}  />
+      </Suspense>
+      <Suspense fallback={null}>
         <WIPPlanet      position={[80, -10, -100]} />
+      </Suspense>
+      <Suspense fallback={null}>
         <ContactPlanet  position={[-20, 15, -160]} />
       </Suspense>
 

@@ -6,7 +6,6 @@ import Universe from './components/Universe/Universe'
 import HUD from './components/UI/HUD'
 import SalesCopy from './components/UI/SalesCopy'
 import SectionPanel from './components/UI/SectionPanel'
-import Cursor from './components/UI/Cursor'
 import PlanetDots from './components/UI/PlanetDots'
 
 function Loader() {
@@ -65,7 +64,6 @@ export default function App() {
         <SectionPanel />
       </div>
       <PlanetDots />
-      <Cursor />
       <Loader />
       <div id="film-grain" aria-hidden="true" />
     </div>

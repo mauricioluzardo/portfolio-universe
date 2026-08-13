@@ -29,8 +29,8 @@ const ZONES = [
     tMin: 0.19, tMax: 0.50, // SOLID: texto aparece 3 ticks antes do painel (t=0.22)
     line1: 'SOLID.',
     line2: 'ZERO PLANILHA.',
-    sub: '100+ streamers. Motor financeiro T1/T2/T3. CEO Intelligence. Scout com IA. WhatsApp com classificação automática. Construído do zero porque nenhum CRM do mercado entendia a Kwai.',
-    micro: '43 páginas · 210k registros · 270k operações financeiras/mês · Claude API integrado',
+    sub: '400 agenciados. Motor financeiro T1/T2/T3. CEO Intelligence. Scout com IA. WhatsApp com classificação automática. Construído do zero porque nenhum CRM do mercado entendia a Kwai.',
+    micro: '44 páginas · 210k registros · 270k operações financeiras/mês · Claude API integrado',
     color: '#42BFDD',
     glow: '#084B83',
   },
@@ -38,8 +38,8 @@ const ZONES = [
     tMin: 0.52, tMax: 0.74, // Voigt: texto aparece 3 ticks antes do painel (t=0.55)
     line1: 'E-COMMERCE',
     line2: 'QUE CONVERTE.',
-    sub: 'Voigt Store: loja completa com Mercado Pago nativo, carrinho persistente, checkout fluido e design mobile-first. Construída para converter — não para impressionar no Behance.',
-    micro: 'Next.js · Mercado Pago · Mobile-first · Em produção',
+    sub: 'Loja completa com Mercado Pago nativo, carrinho persistente, checkout fluido e design mobile-first. Construída para converter — não para impressionar no Behance.',
+    micro: 'Next.js · Mercado Pago · Mobile-first · Demonstração',
     color: '#39FF14',
     glow: '#1B4332',
   },

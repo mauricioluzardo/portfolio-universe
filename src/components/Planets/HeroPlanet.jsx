@@ -53,9 +53,9 @@ function AsteroidRing({ radius, tilt = 0, speed = 0.3, count = 2000 }) {
 function OrbitingMoon() {
   const ref = useRef()
   const textures = useTexture({
-    map:          '/textures/contact/diff.jpg',
-    normalMap:    '/textures/contact/nor.jpg',
-    roughnessMap: '/textures/contact/rough.jpg',
+    map:          '/textures/contact/diff.webp',
+    normalMap:    '/textures/contact/nor.webp',
+    roughnessMap: '/textures/contact/rough.webp',
   })
   useMemo(() => {
     if (textures.map) textures.map.colorSpace = THREE.SRGBColorSpace
@@ -117,7 +117,7 @@ export default function HeroPlanet({ position = [0, 0, 0] }) {
   const SEG = window.innerWidth < 640 ? 64 : 128
 
   // Júpiter 2K como mapa de estrutura de bandas (488KB — leve)
-  const jupiterMap = useTexture('/textures/hero/jupiter_2k.jpg')
+  const jupiterMap = useTexture('/textures/hero/jupiter_2k.webp')
   const planetUniforms = useMemo(() => ({
     uMap:  { value: jupiterMap },
     uTime: { value: 0 },
@@ -135,7 +135,7 @@ export default function HeroPlanet({ position = [0, 0, 0] }) {
         <mesh
           onClick={() => setActivePlanet('hero')}
           onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer' }}
-          onPointerOut={() => { document.body.style.cursor = 'none' }}
+          onPointerOut={() => { document.body.style.cursor = 'default' }}
         >
           <sphereGeometry args={[RADIUS, SEG, SEG]} />
           <shaderMaterial

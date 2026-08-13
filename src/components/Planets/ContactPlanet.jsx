@@ -38,9 +38,9 @@ export default function ContactPlanet({ position = [-20, 15, -160] }) {
   const SEG = window.innerWidth < 640 ? 64 : 128
 
   const textures = useTexture({
-    map:          '/textures/contact/diff.jpg',
-    normalMap:    '/textures/contact/nor.jpg',
-    roughnessMap: '/textures/contact/rough.jpg',
+    map:          '/textures/contact/diff.webp',
+    normalMap:    '/textures/contact/nor.webp',
+    roughnessMap: '/textures/contact/rough.webp',
   })
 
   useMemo(() => {
@@ -56,7 +56,7 @@ export default function ContactPlanet({ position = [-20, 15, -160] }) {
       <group ref={planetRef}
         onClick={() => setActivePlanet('contact')}
         onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer' }}
-        onPointerOut={() => { document.body.style.cursor = 'none' }}
+        onPointerOut={() => { document.body.style.cursor = 'default' }}
       >
         <mesh>
           <sphereGeometry args={[RADIUS, SEG, SEG]} />

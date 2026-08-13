@@ -1,3 +1,7 @@
+// Contato comercial — a mensagem já vai preenchida na conversa do WhatsApp
+const WHATSAPP_NUMERO = '5551984581926'
+const WHATSAPP_MENSAGEM = 'Olá, vim para um orçamento, pode me ajudar?'
+
 export const OWNER = {
   name: 'Mauricio Monaco Luzardo',
   title: 'Fundador & CEO · Sistemas, IA e Operações Digitais',
@@ -12,7 +16,10 @@ export const OWNER = {
   social: {
     linkedin: 'https://www.linkedin.com/in/mauricio-luzardo-7a7aa7257/',
     github: '#',
-    whatsapp: '#',
+    instagram: 'https://www.instagram.com/mauricio_luzardo1',
+    instagramHandle: '@mauricio_luzardo1',
+    whatsapp: `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(WHATSAPP_MENSAGEM)}`,
+    whatsappLabel: '(51) 98458-1926',
     email: 'mauricioluzardo1@gmail.com',
   },
 }
@@ -22,15 +29,15 @@ export const PROJECTS_DONE = [
     id: 'solid',
     name: 'SOLID — CRM-LAB',
     subtitle: 'Sistema operacional da Live Academy Brasil',
-    hook: 'Nenhum CRM do mercado entendia as regras da Kwai: hierarquias próprias, modelo financeiro tripartite, sincronização ao vivo via Voyager API. O SOLID foi construído do zero — um ERP completo com IA, automação via n8n e Claude, que opera uma agência de +100 streamers sem uma única planilha.',
+    hook: 'Nenhum CRM do mercado entendia as regras da Kwai: hierarquias próprias, modelo financeiro tripartite, sincronização ao vivo via Voyager API. O SOLID foi construído do zero — um ERP completo com IA, automação via n8n e Claude, que opera uma agência de 400 agenciados sem uma única planilha.',
     description:
-      'ERP + CRM em produção para operar a Live Academy Brasil na Kwai. Motor financeiro T1/T2/T3 com regras de repasse por papel (supervisor 25%, comercial 10%), modos official e estimado. Sincronização ao vivo com Kwai Voyager API. WhatsApp Cloud API com state machine de prospecção e Claude Haiku ($0,001/msg) classificando intent, risco e sentimento de cada mensagem em tempo real. 6 workflows n8n automatizando notificações de lead, alerta de meta, lembrete de saque e coach semanal de supervisores via Claude Sonnet. CEO Intelligence com snapshot operacional automático. Scout Premium: agente de discovery e scoring de leads. OPS Kanban com prioridades P0–P3. Churn Radar com early warning por scoring. RBAC em 4 níveis. Design system proprietário Pinky DS v4.5. LGPD-compliant (ip_hash em vez de ip_address). 43 páginas · 27 hooks · 18 Edge Functions Supabase.',
+      'ERP + CRM em produção para operar a Live Academy Brasil na Kwai. Motor financeiro T1/T2/T3 com regras de repasse por papel, modos official e estimado. Sincronização ao vivo com Kwai Voyager API. WhatsApp Cloud API com state machine de prospecção e Claude Haiku ($0,001/msg) classificando intent, risco e sentimento de cada mensagem em tempo real. 6 workflows n8n automatizando notificações de lead, alerta de meta, lembrete de saque e coach semanal de supervisores via Claude Sonnet. CEO Intelligence com snapshot operacional automático. Scout Premium: agente de discovery e scoring de leads. OPS Kanban com prioridades P0–P3. Churn Radar com early warning por scoring. RBAC em 4 níveis. Design system proprietário Pinky DS v4.5. LGPD-compliant (ip_hash em vez de ip_address). 44 páginas · 28 hooks · 25 Edge Functions Supabase · 175 migrações versionadas.',
     tech: ['React 18', 'TypeScript', 'Supabase', 'Claude API', 'Claude Haiku', 'WhatsApp Cloud API', 'n8n', 'Recharts', 'Pinky DS v4.5', 'RBAC 4 níveis'],
     status: 'live',
     color: '#084B83',
     glowColor: '#42BFDD',
     link: '#',
-    stats: '100+ usuários · 43 páginas · 18 Edge Functions · 270k ops financeiras/mês · 3-6M diamantes Kwai/mês',
+    stats: '400 agenciados · 44 páginas · 25 Edge Functions · 270k ops financeiras/mês · 3-6M diamantes Kwai/mês',
     // Tema do painel lateral — Pinky DS v4.5 (extraído de index.css + tailwind.config.js do CRM-LAB)
     panelStyle: {
       bg:          '#0F172A',   // --background dark
@@ -70,20 +77,20 @@ export const PROJECTS_DONE = [
       },
     },
     images: [
-      { src: '/projects/solid/solid-01-dashboard.png',  mode: 'dark' },
-      { src: '/projects/solid/solid-02-financial.png',  mode: 'dark' },
-      { src: '/projects/solid/solid-03-streamers.png',  mode: 'dark' },
-      { src: '/projects/solid/solid-04-profile.png',    mode: 'dark' },
-      { src: '/projects/solid/solid-06-pipeline.png',   mode: 'dark' },
-      { src: '/projects/solid/solid-07-attendance.png', mode: 'dark' },
-      { src: '/projects/solid/solid-08-intelligence.png', mode: 'dark' },
-      { src: '/projects/solid/solid-09-ops.png',        mode: 'dark' },
-      { src: '/projects/solid/solid-10-leaderboard.png', mode: 'dark' },
-      { src: '/projects/solid/solid-13-estimador.png',  mode: 'dark' },
-      { src: '/projects/solid/solid-15-alerts.png',     mode: 'dark' },
+      { src: '/projects/solid/solid-01-dashboard.webp',  mode: 'dark' },
+      { src: '/projects/solid/solid-02-financial.webp',  mode: 'dark' },
+      { src: '/projects/solid/solid-03-streamers.webp',  mode: 'dark' },
+      { src: '/projects/solid/solid-04-profile.webp',    mode: 'dark' },
+      { src: '/projects/solid/solid-06-pipeline.webp',   mode: 'dark' },
+      { src: '/projects/solid/solid-07-attendance.webp', mode: 'dark' },
+      { src: '/projects/solid/solid-08-intelligence.webp', mode: 'dark' },
+      { src: '/projects/solid/solid-09-ops.webp',        mode: 'dark' },
+      { src: '/projects/solid/solid-10-leaderboard.webp', mode: 'dark' },
+      { src: '/projects/solid/solid-13-estimador.webp',  mode: 'dark' },
+      { src: '/projects/solid/solid-15-alerts.webp',     mode: 'dark' },
     ],
     modules: [
-      { icon: 'Zap',           name: 'Motor Financeiro T1/T2/T3',  desc: 'Cálculo tripartite por streamer: repasse por papel (supervisor 25%, comercial 10%), modos official e estimado, política vigente Julho 2025.' },
+      { icon: 'Zap',           name: 'Motor Financeiro T1/T2/T3',  desc: 'Cálculo tripartite por agenciado: repasse por papel na hierarquia, modos official e estimado, política versionada por vigência.' },
       { icon: 'Radio',         name: 'Live Radar — Kwai Voyager',  desc: 'Sincronização em tempo real com a API Voyager da Kwai: quem está ao vivo, view count e diamantes por sessão.' },
       { icon: 'BarChart3',     name: 'CEO Intelligence',            desc: 'Snapshot operacional automático: trends de ativação, alertas P0–P3, funil de saúde por supervisor, gerado sem intervenção humana.' },
       { icon: 'MessageSquare', name: 'Atendimento WhatsApp + IA',   desc: 'WhatsApp Cloud API com Claude Haiku classificando intent, risco e sentimento de cada mensagem. State machine de prospecção captura e qualifica leads automaticamente.' },
@@ -93,9 +100,9 @@ export const PROJECTS_DONE = [
       { icon: 'AlertCircle',   name: 'Churn Radar + Monitor Metas', desc: 'Early warning com scoring automático: queda vs baseline 3 meses, dias sem live, risco de saída. Barras de progresso de meta mensal por streamer.' },
     ],
     metrics: [
-      { value: '100+',     label: 'streamers gerenciados' },
+      { value: '400',      label: 'agenciados gerenciados' },
       { value: 'R$ 0',     label: 'de planilha na operação' },
-      { value: '43',       label: 'páginas · 18 Edge Functions' },
+      { value: '44',       label: 'páginas · 25 Edge Functions' },
       { value: '4',        label: 'níveis RBAC + LGPD' },
       { value: '+210k',    label: 'registros no banco' },
       { value: '+69k',     label: 'leads e prospects históricos' },
@@ -104,18 +111,19 @@ export const PROJECTS_DONE = [
     ],
   },
   {
-    id: 'voigt',
-    name: 'Voigt Store',
-    subtitle: 'E-commerce com checkout e pagamento integrado',
+    id: 'ecommerce',
+    name: 'Demonstração E-commerce',
+    subtitle: 'Loja completa com checkout e pagamento integrado',
     hook: 'Uma loja que converte — não que impressiona no Behance. Pagamento nativo com Mercado Pago, carrinho persistente, checkout em 3 cliques e design mobile-first do primeiro pixel.',
     description:
       'Loja online completa com integração nativa ao Mercado Pago, carrinho persistente e checkout fluido. Design mobile-first, arquitetura moderna com Next.js App Router e carregamento ultra-rápido. Construída para converter.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS 4', 'Zustand', 'Mercado Pago'],
     status: 'live',
+    statusLabel: 'Demonstração',
     color: '#1B4332',
     glowColor: '#39FF14',
     link: '#',
-    stats: 'Pagamento nativo · Mobile-first · Em produção',
+    stats: 'Pagamento nativo · Mobile-first · Demonstração',
     // Tema do painel lateral — extraído de globals.css do Voigt Store (dark luxury)
     panelStyle: {
       bg:          '#080808',   // --color-fundo
@@ -128,7 +136,7 @@ export const PROJECTS_DONE = [
       textColor:   '#D8D0C0',   // --color-texto
       textMuted:   '#807870',   // --color-texto-suave
       divider:     'rgba(200,169,110,0.12)',
-      badgeLabel:  'E-COMMERCE — EM PRODUÇÃO',
+      badgeLabel:  'E-COMMERCE — DEMONSTRAÇÃO',
       badgeBg:     '#C8A96E',   // announcement bar ouro do site
       badgeColor:  '#080808',
       badgeBorder: '#C8A96E',
@@ -157,11 +165,11 @@ export const PROJECTS_DONE = [
       },
     },
     images: [
-      { src: '/projects/voigt/screen1.jpg', mode: 'dark' },
-      { src: '/projects/voigt/screen2.jpg', mode: 'dark' },
-      { src: '/projects/voigt/screen3.jpg', mode: 'dark' },
-      { src: '/projects/voigt/screen4.jpg', mode: 'dark' },
-      { src: '/projects/voigt/screen5.jpg', mode: 'dark' },
+      { src: '/projects/ecommerce/screen1.webp', mode: 'dark' },
+      { src: '/projects/ecommerce/screen2.webp', mode: 'dark' },
+      { src: '/projects/ecommerce/screen3.webp', mode: 'dark' },
+      { src: '/projects/ecommerce/screen4.webp', mode: 'dark' },
+      { src: '/projects/ecommerce/screen5.webp', mode: 'dark' },
     ],
   },
 ]
@@ -208,11 +216,11 @@ export const PROJECTS_WIP = [
     link: '#',
     stats: '+10k streamers · +1Bi diamantes · +30Mi/mês',
     images: [
-      '/projects/lab/screen1.png',
-      '/projects/lab/screen2.png',
-      '/projects/lab/screen3.png',
-      '/projects/lab/screen4.png',
-      '/projects/lab/screen5.png',
+      '/projects/lab/screen1.webp',
+      '/projects/lab/screen2.webp',
+      '/projects/lab/screen3.webp',
+      '/projects/lab/screen4.webp',
+      '/projects/lab/screen5.webp',
     ],
   },
 ]

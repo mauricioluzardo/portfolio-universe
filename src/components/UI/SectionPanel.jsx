@@ -61,11 +61,11 @@ function VoigtThumbCard({ img, index, isActive, onClick }) {
             background: 'linear-gradient(135deg,#C8A96E,#E5C97E,#9A7C48)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-          }}>VOIGT</span>
+          }}>LOJA</span>
           <span style={{
             fontFamily: inter, fontSize: 2.5, fontWeight: 400,
             letterSpacing: '0.25em', color: '#807870', marginTop: 0.5,
-          }}>STORE</span>
+          }}>DEMO</span>
         </div>
         <div style={{ display: 'flex', gap: 2, marginLeft: 4 }}>
           {[11, 9, 6, 9].map((w, j) => (
@@ -107,7 +107,7 @@ function VoigtThumbCard({ img, index, isActive, onClick }) {
           }}>historias.</span>
         </div>
         <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#0D0D0D' }}>
-          <img src={img.src} alt=""
+          <img src={img.src} alt="" loading="lazy" decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
           <div style={{
             position: 'absolute', inset: 0,
@@ -155,7 +155,7 @@ function ScreenshotHero({ images, project }) {
       'CEO Intelligence', 'OPS Workspace', 'Leaderboard',
       'Simulador Financeiro', 'Central de Alertas',
     ],
-    voigt: [
+    ecommerce: [
       'Vitrine — Hero', 'Mais Vendidos', 'Página de Categoria',
       'Dashboard Admin', 'Gestão de Produtos',
     ],
@@ -176,7 +176,9 @@ function ScreenshotHero({ images, project }) {
       {/* Hero — imagem principal com setas */}
       <div className="relative w-full overflow-hidden"
         style={{ aspectRatio: '16/9', borderRadius: '8px', background: theme?.dark?.card || '#0a0a0f' }}>
-        <img src={imgs[current].src} alt=""
+        <img src={imgs[current].src}
+          alt={LABELS[current] ? `${project?.name || 'Projeto'} — ${LABELS[current]}` : `Tela ${current + 1} do projeto ${project?.name || ''}`.trim()}
+          decoding="async"
           className="w-full h-full object-cover object-top transition-opacity duration-300" />
 
         {/* Seta esquerda */}
@@ -237,12 +239,12 @@ function ScreenshotHero({ images, project }) {
                 border: isActive ? `2px solid ${primary}` : '2px solid transparent',
                 opacity: isActive ? 1 : 0.4, cursor: 'pointer',
               }}>
-                <img src={img.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                <img src={img.src} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
               </button>
             )
 
             // Voigt: renderiza product card exato do site (não screenshot genérico)
-            if (project?.id === 'voigt') {
+            if (project?.id === 'ecommerce') {
               return <VoigtThumbCard key={i} img={img} index={i} isActive={isActive} onClick={() => setCurrent(i)} />
             }
 
@@ -269,7 +271,7 @@ function ScreenshotHero({ images, project }) {
               }}>
                 {/* Screenshot — 76px × 43px (16:9) */}
                 <div style={{ width: 76, height: 43, overflow: 'hidden', flexShrink: 0 }}>
-                  <img src={img.src} alt=""
+                  <img src={img.src} alt="" loading="lazy" decoding="async"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
                 </div>
 
@@ -424,7 +426,7 @@ function ProjectCard({ project }) {
   const dotColor = accent
 
   // Tech badge — Voigt usa borda gold, SOLID usa borda slate
-  const tagBg      = ps?.id === 'voigt'
+  const tagBg      = ps?.id === 'ecommerce'
     ? 'rgba(8,8,8,0.9)'
     : 'rgba(30,41,59,0.9)'
   const tagBorder  = ps ? `1px solid ${ps.divider || 'rgba(51,65,85,0.7)'}` : '1px solid rgba(51,65,85,0.7)'
@@ -448,7 +450,7 @@ function ProjectCard({ project }) {
       <div className="flex items-center gap-2 mb-3">
         <span style={{ width: 6, height: 6, borderRadius: '50%', background: dotColor, display: 'inline-block', boxShadow: `0 0 6px ${dotColor}` }} />
         <span style={{ fontSize: '10px', letterSpacing: '0.3em', color: textMuted, fontFamily: '"Inter",ui-sans-serif', textTransform: 'uppercase' }}>
-          Live in production
+          {project.statusLabel || 'Live in production'}
         </span>
       </div>
 
@@ -581,7 +583,7 @@ function ProjectsContent() {
 }
 
 function WIPContent() {
-  const voigt = PROJECTS_DONE.find(p => p.id === 'voigt')
+  const voigt = PROJECTS_DONE.find(p => p.id === 'ecommerce')
   const ps    = voigt?.panelStyle
   return (
     <div className="space-y-4">
@@ -726,6 +728,14 @@ function ContactContent() {
       )}
 
       <div className="space-y-2 pt-1 border-t border-white/10">
+        {/* WhatsApp — canal comercial, abre a conversa já com a mensagem escrita */}
+        <a href={OWNER.social.whatsapp} target="_blank" rel="noreferrer"
+          className="flex items-center gap-3 text-sm font-medium text-emerald-200 hover:text-emerald-100 transition-colors"
+          style={{ pointerEvents: 'auto' }}>
+          <span className="text-emerald-400">✆</span>
+          {OWNER.social.whatsappLabel}
+          <span className="text-xs font-normal text-emerald-500/70">orçamento</span>
+        </a>
         <a href={`mailto:${OWNER.social.email}`}
           className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
           style={{ pointerEvents: 'auto' }}>
@@ -735,6 +745,11 @@ function ContactContent() {
           className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
           style={{ pointerEvents: 'auto' }}>
           <span className="text-cyan-400">in</span> linkedin.com/in/mauricio-luzardo
+        </a>
+        <a href={OWNER.social.instagram} target="_blank" rel="noreferrer"
+          className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
+          style={{ pointerEvents: 'auto' }}>
+          <span className="text-cyan-400">◎</span> {OWNER.social.instagramHandle}
         </a>
       </div>
     </div>
@@ -751,14 +766,14 @@ const PANEL_CONTENT = {
 // Mapeia planeta -> projeto para pegar o panelStyle
 const PLANET_PROJECT = {
   projects: () => PROJECTS_DONE.find(p => p.id === 'solid'),
-  wip:      () => PROJECTS_DONE.find(p => p.id === 'voigt'),
+  wip:      () => PROJECTS_DONE.find(p => p.id === 'ecommerce'),
 }
 
 const PLANET_ORDER = ['hero', 'projects', 'wip', 'contact']
 const PLANET_META = {
   hero:     { label: 'Início',  color: '#7B2FF7', t: 0.10 },
   projects: { label: 'SOLID',   color: '#42BFDD', t: 0.30 },
-  wip:      { label: 'Voigt',   color: '#39FF14', t: 0.62 },
+  wip:      { label: 'E-commerce', color: '#39FF14', t: 0.62 },
   contact:  { label: 'Contato', color: '#00FFF0', t: 0.88 },
 }
 

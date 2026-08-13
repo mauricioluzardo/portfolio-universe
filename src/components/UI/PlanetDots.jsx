@@ -3,7 +3,7 @@ import { useUniverseStore } from '../../store/universeStore'
 const PLANETS = [
   { id: 'hero',     label: 'Início',   color: '#7B2FF7' },
   { id: 'projects', label: 'SOLID',    color: '#42BFDD' },
-  { id: 'wip',      label: 'Voigt',    color: '#39FF14' },
+  { id: 'wip',      label: 'E-commerce', color: '#39FF14' },
   { id: 'contact',  label: 'Contato',  color: '#00FFF0' },
 ]
 
