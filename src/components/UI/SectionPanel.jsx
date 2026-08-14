@@ -30,11 +30,11 @@ const contraste = (bg, opacidade) =>
 // landing page: caneta, carrinho, carretel de linha, pote de canetas e o
 // infinito. Posicoes, tamanhos e duracoes copiados do site.
 const AMB_LIVRO = [
-  { nome: 'caneta',   vb: '0 0 56 330',  larg: 62,  esq: '6%',   topo: '-4%', dur: 74,  atraso: 0,   modo: 'flutua' },
-  { nome: 'carrinho', vb: '0 0 220 110', larg: 104, esq: '-20%', topo: '34%', dur: 58,  atraso: -8,  modo: 'atravessa' },
-  { nome: 'carretel', vb: '0 0 130 150', larg: 58,  esq: '72%',  topo: '70%', dur: 128, atraso: -30, modo: 'flutua' },
-  { nome: 'canetas',  vb: '0 0 160 190', larg: 66,  esq: '14%',  topo: '48%', dur: 104, atraso: -70, modo: 'flutua' },
-  { nome: 'infinito', vb: '0 0 120 60',  larg: 54,  esq: '78%',  topo: '18%', dur: 92,  atraso: -45, modo: 'flutua' },
+  { nome: 'caneta',   vb: '0 0 56 330',  larg: 74,  esq: '6%',   topo: '-4%', dur: 74,  atraso: 0,   modo: 'flutua' },
+  { nome: 'carrinho', vb: '0 0 220 110', larg: 128, esq: '-20%', topo: '34%', dur: 58,  atraso: -8,  modo: 'atravessa' },
+  { nome: 'carretel', vb: '0 0 130 150', larg: 72,  esq: '72%',  topo: '70%', dur: 128, atraso: -30, modo: 'flutua' },
+  { nome: 'canetas',  vb: '0 0 160 190', larg: 82,  esq: '14%',  topo: '48%', dur: 104, atraso: -70, modo: 'flutua' },
+  { nome: 'infinito', vb: '0 0 120 60',  larg: 66,  esq: '78%',  topo: '18%', dur: 92,  atraso: -45, modo: 'flutua' },
 ]
 
 function DesenhoAmb({ nome }) {
