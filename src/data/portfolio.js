@@ -1,3 +1,19 @@
+// ─── Imagens dos projetos ────────────────────────────────────────────────────
+// Ficam em src/assets/ (e não em public/) de propósito: assim o Vite gera um
+// hash no nome de cada arquivo. Trocar o conteúdo de uma captura passa a trocar
+// a URL, e o navegador busca a nova em vez de servir a antiga do cache.
+// Em public/ o nome era preservado e uma captura atualizada continuava velha
+// na tela por até 7 dias, que é o max-age do servidor.
+const ARQUIVOS = import.meta.glob('../assets/projects/**/*.{webp,png,jpg}', {
+  eager: true, query: '?url', import: 'default',
+})
+
+function tela(caminho) {
+  const url = ARQUIVOS[`../assets/projects/${caminho}`]
+  if (!url && import.meta.env.DEV) console.warn(`[portfolio] captura não encontrada: ${caminho}`)
+  return url
+}
+
 // Contato comercial — a mensagem já vai preenchida na conversa do WhatsApp
 const WHATSAPP_NUMERO = '5551984581926'
 const WHATSAPP_MENSAGEM = 'Olá, vim para um orçamento, pode me ajudar?'
@@ -76,17 +92,17 @@ export const PROJECTS_DONE = [
       },
     },
     images: [
-      { src: '/projects/solid/solid-01-dashboard.webp',  mode: 'dark' },
-      { src: '/projects/solid/solid-02-financial.webp',  mode: 'dark' },
-      { src: '/projects/solid/solid-03-streamers.webp',  mode: 'dark' },
-      { src: '/projects/solid/solid-04-profile.webp',    mode: 'dark' },
-      { src: '/projects/solid/solid-06-pipeline.webp',   mode: 'dark' },
-      { src: '/projects/solid/solid-07-attendance.webp', mode: 'dark' },
-      { src: '/projects/solid/solid-08-intelligence.webp', mode: 'dark' },
-      { src: '/projects/solid/solid-09-ops.webp',        mode: 'dark' },
-      { src: '/projects/solid/solid-10-leaderboard.webp', mode: 'dark' },
-      { src: '/projects/solid/solid-13-estimador.webp',  mode: 'dark' },
-      { src: '/projects/solid/solid-15-alerts.webp',     mode: 'dark' },
+      { src: tela('solid/solid-01-dashboard.webp'), mode: 'dark' },
+      { src: tela('solid/solid-02-financial.webp'), mode: 'dark' },
+      { src: tela('solid/solid-03-streamers.webp'), mode: 'dark' },
+      { src: tela('solid/solid-04-profile.webp'), mode: 'dark' },
+      { src: tela('solid/solid-06-pipeline.webp'), mode: 'dark' },
+      { src: tela('solid/solid-07-attendance.webp'), mode: 'dark' },
+      { src: tela('solid/solid-08-intelligence.webp'), mode: 'dark' },
+      { src: tela('solid/solid-09-ops.webp'), mode: 'dark' },
+      { src: tela('solid/solid-10-leaderboard.webp'), mode: 'dark' },
+      { src: tela('solid/solid-13-estimador.webp'), mode: 'dark' },
+      { src: tela('solid/solid-15-alerts.webp'), mode: 'dark' },
     ],
     modules: [
       { icon: 'Zap',           name: 'Motor Financeiro T1/T2/T3',  desc: 'Cálculo tripartite por agenciado: repasse por papel na hierarquia, modos official e estimado, política versionada por vigência.' },
@@ -164,11 +180,11 @@ export const PROJECTS_DONE = [
       },
     },
     images: [
-      { src: '/projects/ecommerce/screen1.webp', mode: 'dark' },
-      { src: '/projects/ecommerce/screen2.webp', mode: 'dark' },
-      { src: '/projects/ecommerce/screen3.webp', mode: 'dark' },
-      { src: '/projects/ecommerce/screen4.webp', mode: 'dark' },
-      { src: '/projects/ecommerce/screen5.webp', mode: 'dark' },
+      { src: tela('ecommerce/screen1.webp'), mode: 'dark' },
+      { src: tela('ecommerce/screen2.webp'), mode: 'dark' },
+      { src: tela('ecommerce/screen3.webp'), mode: 'dark' },
+      { src: tela('ecommerce/screen4.webp'), mode: 'dark' },
+      { src: tela('ecommerce/screen5.webp'), mode: 'dark' },
     ],
   },
   {
@@ -241,11 +257,11 @@ export const PROJECTS_DONE = [
       },
     },
     images: [
-      { src: '/projects/livro/screen1.webp', mode: 'dark' },
-      { src: '/projects/livro/screen2.webp', mode: 'dark' },
-      { src: '/projects/livro/screen3.webp', mode: 'dark' },
-      { src: '/projects/livro/screen4.webp', mode: 'dark' },
-      { src: '/projects/livro/screen5.webp', mode: 'dark' },
+      { src: tela('livro/screen1.webp'), mode: 'dark' },
+      { src: tela('livro/screen2.webp'), mode: 'dark' },
+      { src: tela('livro/screen3.webp'), mode: 'dark' },
+      { src: tela('livro/screen4.webp'), mode: 'dark' },
+      { src: tela('livro/screen5.webp'), mode: 'dark' },
     ],
   },
 ]
@@ -264,11 +280,11 @@ export const PROJECTS_WIP = [
     link: '#',
     stats: '+10k streamers · +1Bi diamantes · +30Mi/mês',
     images: [
-      '/projects/lab/screen1.webp',
-      '/projects/lab/screen2.webp',
-      '/projects/lab/screen3.webp',
-      '/projects/lab/screen4.webp',
-      '/projects/lab/screen5.webp',
+      tela('lab/screen1.webp'),
+      tela('lab/screen2.webp'),
+      tela('lab/screen3.webp'),
+      tela('lab/screen4.webp'),
+      tela('lab/screen5.webp'),
     ],
   },
 ]

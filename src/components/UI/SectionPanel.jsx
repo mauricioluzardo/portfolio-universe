@@ -140,9 +140,9 @@ function VoigtThumbCard({ img, index, isActive, onClick }) {
   )
 }
 
-// Thumbnail do site do livro — reproduz a identidade da pagina: fundo creme,
-// titulo em serifa, rotulo vermelho em versalete e a barra fixa de compra que
-// acompanha o leitor em todas as telas. Cores amostradas do site.
+// Thumbnail do site do livro — reproduz a capa da pagina: a foto no topo,
+// o titulo em serifa com o subtitulo vermelho em versalete, e a barra fixa de
+// compra que acompanha o leitor em toda a navegacao. Cores amostradas do site.
 function LivroThumbCard({ img, index, isActive, onClick }) {
   const serif = '"Playfair Display", Georgia, serif'
   const sans  = '"Inter", ui-sans-serif, system-ui'
@@ -151,7 +151,7 @@ function LivroThumbCard({ img, index, isActive, onClick }) {
   const TINTA    = '#22262E'
   return (
     <button onClick={onClick} aria-label={`Ver tela ${index + 1}`} aria-pressed={isActive} style={{
-      flexShrink: 0, width: 76, height: 58, borderRadius: 4,
+      flexShrink: 0, width: 76, height: 58, borderRadius: 3,
       overflow: 'hidden', display: 'flex', flexDirection: 'column',
       position: 'relative', background: CREME,
       border: `1px solid ${isActive ? 'rgba(240,175,30,0.7)' : 'rgba(34,38,46,0.18)'}`,
@@ -160,90 +160,71 @@ function LivroThumbCard({ img, index, isActive, onClick }) {
       transition: 'all 200ms cubic-bezier(0.25,0.46,0.45,0.94)',
       cursor: 'pointer',
     }}>
-      {/* Miolo — esquerda: titulo em serifa sobre as ilustracoes que flutuam
-          no site (a caneta e o carrinho, hiperfocos do Adriano).
-          Direita: a tela do celular. */}
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', background: CREME }}>
-        <div style={{
-          width: 34, flexShrink: 0, position: 'relative', overflow: 'hidden',
-          padding: '0 0 0 3px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        }}>
-          {/* caneta */}
-          <svg viewBox="0 0 56 330" style={{
-            position: 'absolute', left: 0, top: 4, height: 40, opacity: 0.3,
-          }} fill="none" stroke={TINTA} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M 17 20 L 35 20" />
-            <path d="M 17 20 L 15 92 M 35 20 L 37 92" />
-            <path d="M 35 27 Q 46 31 45 48 L 44 72 Q 44 78 38 79" />
-            <path d="M 15 92 L 37 92" />
-            <path d="M 16 92 L 16 264 M 36 92 L 36 264" />
-            <path d="M 16 264 L 26 302 L 36 264" />
-            <path d="M 26 302 L 26 313" />
-          </svg>
-          {/* carrinho */}
-          <svg viewBox="0 0 220 110" style={{
-            position: 'absolute', right: -2, bottom: 1, width: 28, opacity: 0.3,
-          }} fill="none" stroke={TINTA} strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M 14 78 L 14 64 Q 16 56 34 54 L 68 51 L 88 27 Q 92 23 104 23
-                     L 140 23 Q 150 23 154 28 L 168 50 L 198 56 Q 206 58 206 66 L 206 78" />
-            <path d="M 14 78 L 41 78 M 75 78 L 145 78 M 179 78 L 206 78" />
-            <circle cx="58" cy="78" r="17" />
-            <circle cx="162" cy="78" r="17" />
-          </svg>
-          <span style={{
-            position: 'relative', fontFamily: serif, fontSize: 7, fontWeight: 500,
-            color: TINTA, lineHeight: 1.02, display: 'block',
-          }}>O Acon-</span>
-          <span style={{
-            position: 'relative', fontFamily: serif, fontSize: 7, fontWeight: 500,
-            color: TINTA, lineHeight: 1.02, display: 'block',
-          }}>chego</span>
-          <span style={{
-            position: 'relative', fontFamily: sans, fontSize: 2.4, fontWeight: 700,
-            color: VERMELHO, letterSpacing: '0.18em', marginTop: 1.5, display: 'block',
-          }}>A HISTORIA</span>
-        </div>
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: CREME }}>
-          <img src={img.src} alt="" loading="lazy" decoding="async"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
-        </div>
+      {/* 1. A tela, no topo — como a foto na capa do site */}
+      <div style={{ height: 25, flexShrink: 0, position: 'relative', overflow: 'hidden', background: CREME }}>
+        <img src={img.src} alt="" loading="lazy" decoding="async"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+        <span style={{
+          position: 'absolute', top: 1, left: 3,
+          fontFamily: sans, fontSize: 4, fontWeight: 700, color: VERMELHO,
+          textShadow: '0 0 3px rgba(253,251,246,0.95)', letterSpacing: '0.06em',
+        }}>{String(index + 1).padStart(2, '0')}</span>
       </div>
 
-      {/* Barra fixa de compra — presente em toda a navegacao do site */}
+      {/* 2. Bloco creme — titulo em serifa e o subtitulo vermelho, como no site */}
       <div style={{
-        height: 13, flexShrink: 0, background: CREME,
+        flex: 1, background: CREME, position: 'relative', overflow: 'hidden',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      }}>
+        {/* a caneta e o carrinho, que flutuam pelas paginas */}
+        <svg viewBox="0 0 56 330" style={{ position: 'absolute', left: 2, top: -1, height: 20, opacity: 0.22 }}
+          fill="none" stroke={TINTA} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M 17 20 L 35 20" /><path d="M 17 20 L 15 92 M 35 20 L 37 92" />
+          <path d="M 35 27 Q 46 31 45 48 L 44 72 Q 44 78 38 79" /><path d="M 15 92 L 37 92" />
+          <path d="M 16 92 L 16 264 M 36 92 L 36 264" /><path d="M 16 264 L 26 302 L 36 264" />
+          <path d="M 26 302 L 26 313" />
+        </svg>
+        <svg viewBox="0 0 220 110" style={{ position: 'absolute', right: 1, bottom: 0, width: 20, opacity: 0.22 }}
+          fill="none" stroke={TINTA} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M 14 78 L 14 64 Q 16 56 34 54 L 68 51 L 88 27 Q 92 23 104 23
+                   L 140 23 Q 150 23 154 28 L 168 50 L 198 56 Q 206 58 206 66 L 206 78" />
+          <path d="M 14 78 L 41 78 M 75 78 L 145 78 M 179 78 L 206 78" />
+          <circle cx="58" cy="78" r="17" /><circle cx="162" cy="78" r="17" />
+        </svg>
+        <span style={{
+          position: 'relative', fontFamily: serif, fontSize: 8, fontWeight: 500,
+          color: TINTA, lineHeight: 1, whiteSpace: 'nowrap',
+        }}>O Aconchego</span>
+        <span style={{
+          position: 'relative', fontFamily: sans, fontSize: 2.6, fontWeight: 700,
+          color: VERMELHO, letterSpacing: '0.16em', marginTop: 1.5, whiteSpace: 'nowrap',
+        }}>A HISTÓRIA DO ADRIANO</span>
+      </div>
+
+      {/* 3. Barra fixa de compra — presente em toda a navegacao do site */}
+      <div style={{
+        height: 12, flexShrink: 0, background: CREME,
         borderTop: '1px solid rgba(34,38,46,0.10)',
-        display: 'flex', alignItems: 'center', gap: 3,
-        paddingLeft: 3, paddingRight: 3,
+        display: 'flex', alignItems: 'center', paddingLeft: 3, paddingRight: 3,
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-          <span style={{ fontFamily: serif, fontSize: 5.5, fontWeight: 500, color: TINTA }}>R$</span>
-          <span style={{ fontFamily: sans, fontSize: 2.4, color: 'rgba(34,38,46,0.5)', marginTop: 0.5 }}>digital</span>
+          <span style={{ fontFamily: serif, fontSize: 5, fontWeight: 500, color: TINTA, whiteSpace: 'nowrap' }}>R$ 14,90</span>
+          <span style={{ fontFamily: sans, fontSize: 2.2, color: 'rgba(34,38,46,0.45)', marginTop: 0.3 }}>livro digital</span>
         </div>
         <div style={{
-          marginLeft: 'auto', background: VERMELHO, borderRadius: 2,
-          padding: '2.5px 6px', display: 'flex', alignItems: 'center',
+          marginLeft: 'auto', background: VERMELHO, borderRadius: 1.5,
+          padding: '2.5px 5px', display: 'flex', alignItems: 'center',
         }}>
-          <span style={{ fontFamily: sans, fontSize: 3.2, fontWeight: 700, color: '#fff', letterSpacing: '0.02em' }}>
+          <span style={{ fontFamily: sans, fontSize: 3.4, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap' }}>
             Quero ler
           </span>
         </div>
       </div>
 
-      {/* Numero da tela + fio dourado, no lugar do indicador do carrossel */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: 8,
-        display: 'flex', alignItems: 'center', paddingLeft: 3, paddingRight: 3,
-        background: 'linear-gradient(to bottom, rgba(253,251,246,0.92), rgba(253,251,246,0))',
-      }}>
-        <span style={{ fontFamily: sans, fontSize: 4, fontWeight: 700, color: VERMELHO, letterSpacing: '0.08em' }}>
-          {String(index + 1).padStart(2, '0')}
-        </span>
-      </div>
       {isActive && (
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-          background: 'linear-gradient(90deg,#F0AF1E,#F7CF74,#C9323B)',
+          background: `linear-gradient(90deg,#F0AF1E,${VERMELHO})`,
         }} />
       )}
     </button>
