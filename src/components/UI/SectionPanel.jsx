@@ -25,6 +25,88 @@ function painelClaro(cor) {
 const contraste = (bg, opacidade) =>
   painelClaro(bg) ? `rgba(34,38,46,${opacidade})` : `rgba(255,255,255,${opacidade})`
 
+
+// Ilustracoes de ambiente do painel do livro — as mesmas que atravessam a
+// landing page: caneta, carrinho, carretel de linha, pote de canetas e o
+// infinito. Posicoes, tamanhos e duracoes copiados do site.
+const AMB_LIVRO = [
+  { nome: 'caneta',   vb: '0 0 56 330',  larg: 62,  esq: '6%',   topo: '-4%', dur: 74,  atraso: 0,   modo: 'flutua' },
+  { nome: 'carrinho', vb: '0 0 220 110', larg: 104, esq: '-20%', topo: '34%', dur: 58,  atraso: -8,  modo: 'atravessa' },
+  { nome: 'carretel', vb: '0 0 130 150', larg: 58,  esq: '72%',  topo: '70%', dur: 128, atraso: -30, modo: 'flutua' },
+  { nome: 'canetas',  vb: '0 0 160 190', larg: 66,  esq: '14%',  topo: '48%', dur: 104, atraso: -70, modo: 'flutua' },
+  { nome: 'infinito', vb: '0 0 120 60',  larg: 54,  esq: '78%',  topo: '18%', dur: 92,  atraso: -45, modo: 'flutua' },
+]
+
+function DesenhoAmb({ nome }) {
+  const t = { fill: 'none', stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' }
+  if (nome === 'caneta') return (
+    <g {...t}>
+      <path d="M 17 20 L 35 20" /><path d="M 17 20 L 15 92 M 35 20 L 37 92" />
+      <path d="M 35 27 Q 46 31 45 48 L 44 72 Q 44 78 38 79" />
+      <path d="M 35 33 Q 41 36 40 49" opacity=".4" /><path d="M 15 92 L 37 92" />
+      <path d="M 16 92 L 16 264 M 36 92 L 36 264" />
+      <path d="M 21 96 L 21 260 M 31 96 L 31 260" opacity=".38" />
+      <path d="M 16 264 L 26 302 L 36 264" /><path d="M 26 302 L 26 313" strokeWidth="4.5" />
+    </g>
+  )
+  if (nome === 'carrinho') return (
+    <g {...t}>
+      <path d="M 14 78 L 14 64 Q 16 56 34 54 L 68 51 L 88 27 Q 92 23 104 23
+               L 140 23 Q 150 23 154 28 L 168 50 L 198 56 Q 206 58 206 66 L 206 78" />
+      <path d="M 14 78 L 41 78 M 75 78 L 145 78 M 179 78 L 206 78" />
+      <path d="M 95 30 L 82 48 L 108 48 L 108 30 Z" opacity=".55" />
+      <path d="M 116 30 L 116 48 L 148 48 L 137 30 Z" opacity=".55" />
+      <path d="M 34 62 L 196 62" opacity=".35" />
+      <circle cx="58" cy="78" r="17" /><circle cx="162" cy="78" r="17" />
+      <circle cx="58" cy="78" r="7" opacity=".5" /><circle cx="162" cy="78" r="7" opacity=".5" />
+    </g>
+  )
+  if (nome === 'carretel') return (
+    <g {...t}>
+      <path d="M 30 18 L 100 18 M 30 132 L 100 132" strokeWidth="4" />
+      <path d="M 44 18 L 44 132 M 86 18 L 86 132" />
+      <path d="M 46 32 Q 65 26 84 32 M 46 48 Q 65 42 84 48 M 46 64 Q 65 58 84 64
+               M 46 80 Q 65 74 84 80 M 46 96 Q 65 90 84 96 M 46 112 Q 65 106 84 112" opacity=".45" />
+      <path d="M 86 96 Q 108 104 106 124 Q 104 140 88 140" />
+    </g>
+  )
+  if (nome === 'canetas') return (
+    <g {...t}>
+      <path d="M 44 104 L 116 104 L 108 176 Q 107 182 100 182 L 60 182 Q 53 182 52 176 Z" />
+      <path d="M 44 104 L 116 104" strokeWidth="4" />
+      {[52, 62, 72, 82, 92, 102, 112].map((x, i) => (
+        <path key={i} d={`M ${x} 104 L ${x - 2 + (i % 3) * 2} ${28 + (i % 4) * 12}`} opacity=".7" />
+      ))}
+    </g>
+  )
+  return (
+    <path d="M 54,38 C 40,54 12,52 12,30 C 12,8 40,6 54,22 C 58,27 62,33 66,38
+             C 80,54 108,52 108,30 C 108,8 80,6 66,22 C 62,27 58,33 54,38 Z"
+      fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+  )
+}
+
+function AmbienteLivro() {
+  return (
+    <div aria-hidden="true" style={{
+      position: 'absolute', inset: 0, overflow: 'hidden',
+      pointerEvents: 'none', zIndex: 0,
+    }}>
+      {AMB_LIVRO.map(d => (
+        <span key={d.nome}
+          className={`livro-amb livro-${d.modo}`}
+          style={{
+            left: d.esq, top: d.topo, width: d.larg,
+            animationDuration: `${d.dur}s`,
+            animationDelay: `${d.atraso}s`,
+          }}>
+          <svg viewBox={d.vb}><DesenhoAmb nome={d.nome} /></svg>
+        </span>
+      ))}
+    </div>
+  )
+}
+
 // Normaliza images: aceita strings (legado) ou objetos { src, mode }
 function normalizeImages(images) {
   if (!images?.length) return []
@@ -539,10 +621,11 @@ function ProjectCard({ project }) {
   // Cor do dot de status: usa accent do projeto
   const dotColor = accent
 
-  // Tech badge — Voigt usa borda gold, SOLID usa borda slate
-  const tagBg      = ps?.id === 'ecommerce'
-    ? 'rgba(8,8,8,0.9)'
-    : 'rgba(30,41,59,0.9)'
+  // Tech badge — em painel claro o chip escuro fica um bloco preto sobre o
+  // creme; ali o fundo vem do proprio papel do projeto.
+  const tagBg      = painelClaro(ps?.bg)
+    ? 'rgba(34,38,46,0.05)'
+    : (ps?.id === 'ecommerce' ? 'rgba(8,8,8,0.9)' : 'rgba(30,41,59,0.9)')
   const tagBorder  = ps ? `1px solid ${ps.divider || 'rgba(51,65,85,0.7)'}` : '1px solid rgba(51,65,85,0.7)'
   const tagColor   = ps?.titleColor || '#F1F5F9'
   const tagFont    = ps?.titleFont  || '"Inter","Roboto",ui-sans-serif'
@@ -1028,6 +1111,7 @@ export default function SectionPanel() {
           }
         }}
         style={{
+          position: 'relative',
           height: '100%',
           overflowY: 'auto',
           WebkitOverflowScrolling: 'touch',
@@ -1097,7 +1181,12 @@ export default function SectionPanel() {
             &#x2715;
           </button>
         )}
-        {Content && <Content />}
+        {activePlanet === 'livro' && <AmbienteLivro />}
+        {Content && (
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <Content />
+          </div>
+        )}
 
         {/* ── Next planet CTA — mobile only ── */}
         {isMobile && (

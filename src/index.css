@@ -98,3 +98,32 @@ html, body {
 [data-scroll-ignore] button:not([data-pill]) {
   border-radius: 0 !important;
 }
+
+/* ─── Ambiente do painel do livrodoadriano.com.br ────────────────────────────
+   Reproduz as ilustrações que atravessam a landing page. Copiado do site:
+   .flutua deriva devagar com rotação; .atravessa é o carrinho cruzando.
+   Opacidades .07 e .06, iguais às de lá.                                     */
+@keyframes livroFlutua {
+  0%   { transform: translate3d(0,  34px, 0) rotate(-8deg); }
+  50%  { transform: translate3d(18px, -38px, 0) rotate(10deg); }
+  100% { transform: translate3d(0,  34px, 0) rotate(-8deg); }
+}
+@keyframes livroAtravessa {
+  0%   { left: -22%; transform: translateY(0); }
+  100% { left: 118%; transform: translateY(-26px); }
+}
+.livro-amb {
+  position: absolute;
+  display: block;
+  will-change: transform;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: #22262E;
+}
+.livro-amb svg { width: 100%; height: auto; display: block; }
+.livro-flutua   { opacity: 0.07; animation-name: livroFlutua; }
+.livro-atravessa{ opacity: 0.06; animation-name: livroAtravessa; }
+
+@media (prefers-reduced-motion: reduce) {
+  .livro-amb { animation: none; }
+}
