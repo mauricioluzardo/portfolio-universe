@@ -185,10 +185,6 @@ export const PROJECTS_DONE = [
         text: 'A caneta e os carrinhos que atravessam as páginas são os hiperfocos dele. O carretel de linha vem da máquina de costura da avó. Nada ali é enfeite de banco de imagens.',
       },
       {
-        title: 'Infinito, nunca quebra-cabeça',
-        text: 'A peça de quebra-cabeça é rejeitada por boa parte da comunidade autista. O símbolo do infinito ocupa esse lugar — detalhe invisível para quem passa, decisivo para quem é dali.',
-      },
-      {
         title: 'Escrito para ser lido à noite, no celular',
         text: 'Corpo de texto grande, entrelinha generosa e contraste alto. O público lê exausto, no fim do dia, numa tela pequena — o site foi dimensionado para essa pessoa.',
       },
@@ -250,7 +246,6 @@ export const PROJECTS_DONE = [
       { src: '/projects/livro/screen3.webp', mode: 'dark' },
       { src: '/projects/livro/screen4.webp', mode: 'dark' },
       { src: '/projects/livro/screen5.webp', mode: 'dark' },
-      { src: '/projects/livro/screen6.webp', mode: 'dark' },
     ],
   },
 ]

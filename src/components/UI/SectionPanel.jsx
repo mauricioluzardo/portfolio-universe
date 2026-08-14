@@ -271,7 +271,7 @@ function ScreenshotHero({ images, project }) {
     ],
     livro: [
       'Abertura', 'Folheie o livro', 'Amostra grátis',
-      'Como comprar', 'Perguntas', 'Fechamento',
+      'Como comprar', 'Perguntas',
     ],
   }
   const LABELS = LABELS_BY_PROJECT[project?.id] || []
