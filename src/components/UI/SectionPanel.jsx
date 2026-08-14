@@ -1229,55 +1229,76 @@ export default function SectionPanel() {
           </div>
         )}
 
-        {/* ── Next planet CTA — mobile only ── */}
+        {/* ── Proximo mundo — mobile ──────────────────────────────────────
+            Fica grudado no rodape do painel, nao no fim do conteudo: antes
+            era preciso rolar tudo para descobrir que havia mais planetas, e
+            dava para achar que o universo acabava no primeiro. Tambem mostra
+            a posicao no percurso ("2 de 5"), para o tamanho do todo ficar
+            claro logo de cara. */}
         {isMobile && (
-          <div style={{ marginTop: 32, paddingBottom: 8 }}>
+          <div style={{
+            position: 'sticky', bottom: 0, zIndex: 3,
+            marginTop: 28,
+            marginLeft: -20, marginRight: -20,
+            paddingLeft: 20, paddingRight: 20,
+            paddingTop: 10,
+            paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 12px)',
+            background: `linear-gradient(to top, ${panelBg} 62%, transparent)`,
+          }}>
             {nextPlanet ? (
               <button
                 onClick={handleNextPlanet}
                 style={{
                   width: '100%',
-                  padding: '16px 20px',
-                  background: `${PLANET_META[nextPlanet].color}08`,
-                  border: `1px solid ${PLANET_META[nextPlanet].color}40`,
-                  borderRadius: 0,
-                  color: PLANET_META[nextPlanet].color,
-                  fontFamily: '"JetBrains Mono", monospace',
-                  fontSize: 11,
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
+                  padding: '15px 18px',
+                  background: PLANET_META[nextPlanet].color,
+                  border: 'none',
+                  borderRadius: 10,
+                  boxShadow: `0 6px 20px ${PLANET_META[nextPlanet].color}55`,
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
+                  gap: 12,
                   pointerEvents: 'auto',
                 }}
               >
-                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 9, letterSpacing: '0.2em' }}>
-                  próximo mundo
+                <span style={{ textAlign: 'left', lineHeight: 1.25 }}>
+                  <span style={{
+                    display: 'block',
+                    fontFamily: '"JetBrains Mono", monospace',
+                    fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+                    color: 'rgba(0,0,0,0.55)',
+                  }}>
+                    próximo mundo · {currentIdx + 2} de {PLANET_ORDER.length}
+                  </span>
+                  <span style={{
+                    display: 'block', marginTop: 3,
+                    fontFamily: '"Space Grotesk", ui-sans-serif',
+                    fontSize: 15, fontWeight: 700, color: '#0B0B12',
+                  }}>
+                    {PLANET_META[nextPlanet].label}
+                  </span>
                 </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span
-                    style={{
-                      width: 7, height: 7, borderRadius: '50%',
-                      background: PLANET_META[nextPlanet].color,
-                      boxShadow: `0 0 8px ${PLANET_META[nextPlanet].color}`,
-                      display: 'inline-block',
-                      flexShrink: 0,
-                    }}
-                  />
-                  {PLANET_META[nextPlanet].label} →
-                </span>
+                <span aria-hidden="true" style={{
+                  flexShrink: 0,
+                  width: 30, height: 30, borderRadius: '50%',
+                  background: 'rgba(0,0,0,0.18)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#0B0B12', fontSize: 15, fontWeight: 700,
+                }}>→</span>
               </button>
             ) : (
-              /* No último planeta — convite para contato */
               <div style={{
-                width: '100%', padding: '14px 20px',
-                border: '1px solid rgba(255,255,255,0.06)',
-                borderRadius: 0,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                width: '100%', padding: '13px 18px', borderRadius: 10,
+                border: `1px solid ${contraste(panelBg, 0.12)}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <span style={{ fontSize: 8, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.2)', fontFamily: '"JetBrains Mono",monospace', textTransform: 'uppercase' }}>
+                <span style={{
+                  fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+                  fontFamily: '"JetBrains Mono", monospace',
+                  color: contraste(panelBg, 0.4),
+                }}>
                   fim do universo · por enquanto
                 </span>
               </div>
