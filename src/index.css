@@ -127,8 +127,8 @@ html, body {
   color: #22262E;
 }
 .livro-amb svg { width: 100%; height: auto; display: block; }
-.livro-flutua   { opacity: 0.20; animation-name: livroFlutua; }
-.livro-atravessa{ opacity: 0.18; animation-name: livroAtravessa; }
+.livro-flutua   { opacity: 0.22; animation-name: livroFlutua; }
+.livro-atravessa{ opacity: 0.20; animation-name: livroAtravessa; }
 
 /* Quem pediu menos movimento vê os desenhos parados, não sem eles. */
 @media (prefers-reduced-motion: reduce) {

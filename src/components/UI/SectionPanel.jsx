@@ -26,48 +26,29 @@ const contraste = (bg, opacidade) =>
   painelClaro(bg) ? `rgba(34,38,46,${opacidade})` : `rgba(255,255,255,${opacidade})`
 
 
-// Ilustracoes de ambiente do painel do livro — as mesmas que atravessam a
-// landing page. Aqui elas cobrem TODA a altura do painel, com cada desenho
-// inteiro: em painel que rola muito (mobile), poucos desenhos soltos viravam
-// pedacos cortados nas bordas. Posicoes fixas, nunca aleatorias, para nao
-// mudarem a cada render.
+// Ilustracoes de ambiente do painel do livro: so caneta e carrinho, que sao
+// os hiperfocos do Adriano. Ficam pequenas e encostadas nas margens — o texto
+// ocupa o meio do painel e nada pode disputar a leitura com ele.
 //   cima/esq em %, largura em px, giro em graus, dur/atraso em segundos
 const AMB_LIVRO = [
-  { d: 'caneta',   esq: 4,  cima: 1,  larg: 58, giro: -12, dur: 74,  atraso: 0 },
-  { d: 'infinito', esq: 62, cima: 4,  larg: 62, giro: 8,   dur: 92,  atraso: -45 },
-  { d: 'carretel', esq: 30, cima: 8,  larg: 54, giro: 14,  dur: 128, atraso: -30 },
-  { d: 'canetas',  esq: 68, cima: 13, larg: 62, giro: -6,  dur: 104, atraso: -70 },
-  { d: 'caneta',   esq: 20, cima: 18, larg: 52, giro: 22,  dur: 86,  atraso: -20 },
-  { d: 'carretel', esq: 58, cima: 24, larg: 58, giro: -16, dur: 112, atraso: -55 },
-  { d: 'caneta',   esq: 6,  cima: 30, larg: 62, giro: 6,   dur: 96,  atraso: -12 },
-  { d: 'infinito', esq: 36, cima: 36, larg: 58, giro: -10, dur: 88,  atraso: -62 },
-  { d: 'canetas',  esq: 66, cima: 40, larg: 58, giro: 12,  dur: 118, atraso: -35 },
-  { d: 'caneta',   esq: 24, cima: 46, larg: 56, giro: -20, dur: 78,  atraso: -80 },
-  { d: 'carretel', esq: 4,  cima: 52, larg: 52, giro: 9,   dur: 124, atraso: -18 },
-  { d: 'caneta',   esq: 62, cima: 56, larg: 60, giro: 16,  dur: 92,  atraso: -50 },
-  { d: 'infinito', esq: 30, cima: 62, larg: 60, giro: -7,  dur: 100, atraso: -26 },
-  { d: 'canetas',  esq: 8,  cima: 68, larg: 60, giro: 11,  dur: 110, atraso: -68 },
-  { d: 'caneta',   esq: 64, cima: 73, larg: 54, giro: -14, dur: 82,  atraso: -8 },
-  { d: 'carretel', esq: 34, cima: 79, larg: 56, giro: 18,  dur: 120, atraso: -40 },
-  { d: 'caneta',   esq: 6,  cima: 85, larg: 58, giro: -5,  dur: 90,  atraso: -74 },
-  { d: 'infinito', esq: 60, cima: 90, larg: 58, giro: 13,  dur: 96,  atraso: -22 },
+  { d: 'caneta', esq: 2,  cima: 6,  larg: 34, giro: -14, dur: 86,  atraso: 0   },
+  { d: 'caneta', esq: 84, cima: 17, larg: 30, giro: 12,  dur: 104, atraso: -38 },
+  { d: 'caneta', esq: 3,  cima: 40, larg: 32, giro: 9,   dur: 92,  atraso: -66 },
+  { d: 'caneta', esq: 85, cima: 54, larg: 34, giro: -11, dur: 112, atraso: -14 },
+  { d: 'caneta', esq: 2,  cima: 72, larg: 30, giro: 16,  dur: 96,  atraso: -52 },
+  { d: 'caneta', esq: 84, cima: 87, larg: 32, giro: -8,  dur: 100, atraso: -28 },
 ]
 
-// viewBox de cada desenho
 const VB_AMB = {
   caneta:   '0 0 56 330',
   carrinho: '0 0 220 110',
-  carretel: '0 0 130 150',
-  canetas:  '0 0 160 190',
-  infinito: '0 0 120 60',
 }
 
-// O carrinho e a excecao: em vez de derivar no lugar, atravessa o painel —
-// exatamente como faz na pagina.
+// O carrinho atravessa o painel, como atravessa a pagina. Dois apenas, em
+// faixas onde nao ha texto corrido.
 const CARRINHOS = [
-  { cima: 22, larg: 116, dur: 58, atraso: -8 },
-  { cima: 58, larg: 128, dur: 74, atraso: -40 },
-  { cima: 88, larg: 104, dur: 66, atraso: -25 },
+  { cima: 30, larg: 66, dur: 64, atraso: -8  },
+  { cima: 80, larg: 58, dur: 82, atraso: -44 },
 ]
 
 function DesenhoAmb({ nome }) {
@@ -94,29 +75,7 @@ function DesenhoAmb({ nome }) {
       <circle cx="58" cy="78" r="7" opacity=".5" /><circle cx="162" cy="78" r="7" opacity=".5" />
     </g>
   )
-  if (nome === 'carretel') return (
-    <g {...t}>
-      <path d="M 30 18 L 100 18 M 30 132 L 100 132" strokeWidth="4" />
-      <path d="M 44 18 L 44 132 M 86 18 L 86 132" />
-      <path d="M 46 32 Q 65 26 84 32 M 46 48 Q 65 42 84 48 M 46 64 Q 65 58 84 64
-               M 46 80 Q 65 74 84 80 M 46 96 Q 65 90 84 96 M 46 112 Q 65 106 84 112" opacity=".45" />
-      <path d="M 86 96 Q 108 104 106 124 Q 104 140 88 140" />
-    </g>
-  )
-  if (nome === 'canetas') return (
-    <g {...t}>
-      <path d="M 44 104 L 116 104 L 108 176 Q 107 182 100 182 L 60 182 Q 53 182 52 176 Z" />
-      <path d="M 44 104 L 116 104" strokeWidth="4" />
-      {[52, 62, 72, 82, 92, 102, 112].map((x, i) => (
-        <path key={i} d={`M ${x} 104 L ${x - 2 + (i % 3) * 2} ${28 + (i % 4) * 12}`} opacity=".7" />
-      ))}
-    </g>
-  )
-  return (
-    <path d="M 54,38 C 40,54 12,52 12,30 C 12,8 40,6 54,22 C 58,27 62,33 66,38
-             C 80,54 108,52 108,30 C 108,8 80,6 66,22 C 62,27 58,33 54,38 Z"
-      fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-  )
+  return null
 }
 
 function AmbienteLivro() {
