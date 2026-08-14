@@ -12,6 +12,19 @@ import { OWNER, PROJECTS_DONE, PROJECTS_WIP } from '../../data/portfolio'
 // Screenshot primeiro → hook → números grandes → módulos → galeria
 // â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 
+// Alguns projetos tem identidade clara (o site do livro e creme). Em vez de
+// espalhar condicionais, deduzimos do proprio fundo do painel qual e o tom de
+// contraste — assim o chrome (bordas, pontos, botao de fechar) acompanha.
+function painelClaro(cor) {
+  const m = /^#?([0-9a-fA-F]{6})$/.exec(cor || '')
+  if (!m) return false
+  const n = parseInt(m[1], 16)
+  const luz = 0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)
+  return luz > 150
+}
+const contraste = (bg, opacidade) =>
+  painelClaro(bg) ? `rgba(34,38,46,${opacidade})` : `rgba(255,255,255,${opacidade})`
+
 // Normaliza images: aceita strings (legado) ou objetos { src, mode }
 function normalizeImages(images) {
   if (!images?.length) return []
@@ -144,18 +157,20 @@ function VoigtThumbCard({ img, index, isActive, onClick }) {
 // o titulo em serifa com o subtitulo vermelho em versalete, e a barra fixa de
 // compra que acompanha o leitor em toda a navegacao. Cores amostradas do site.
 function LivroThumbCard({ img, index, isActive, onClick }) {
-  const serif = '"Playfair Display", Georgia, serif'
-  const sans  = '"Inter", ui-sans-serif, system-ui'
-  const CREME    = '#FDFBF6'
-  const VERMELHO = '#C9323B'
-  const TINTA    = '#22262E'
+  // Fontes e cores do :root do livrodoadriano.com.br
+  const serif = '"Fraunces", Georgia, serif'
+  const sans  = '"Atkinson Hyperlegible", ui-sans-serif, system-ui'
+  const CREME    = '#FDFBF6'   // --creme
+  const PAPEL    = '#FFFFFF'   // --papel
+  const VERMELHO = '#C41E28'   // --vermelho
+  const TINTA    = '#22262E'   // --tinta
   return (
     <button onClick={onClick} aria-label={`Ver tela ${index + 1}`} aria-pressed={isActive} style={{
       flexShrink: 0, width: 76, height: 58, borderRadius: 3,
       overflow: 'hidden', display: 'flex', flexDirection: 'column',
-      position: 'relative', background: CREME,
-      border: `1px solid ${isActive ? 'rgba(240,175,30,0.7)' : 'rgba(34,38,46,0.18)'}`,
-      boxShadow: isActive ? '0 0 18px rgba(240,175,30,0.22)' : 'none',
+      position: 'relative', background: PAPEL,
+      border: `1px solid ${isActive ? VERMELHO : 'rgba(34,38,46,0.12)'}`,
+      boxShadow: isActive ? '0 0 14px rgba(196,30,40,0.18)' : 'none',
       opacity: isActive ? 1 : 0.46,
       transition: 'all 200ms cubic-bezier(0.25,0.46,0.45,0.94)',
       cursor: 'pointer',
@@ -224,7 +239,7 @@ function LivroThumbCard({ img, index, isActive, onClick }) {
       {isActive && (
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-          background: `linear-gradient(90deg,#F0AF1E,${VERMELHO})`,
+          background: VERMELHO,
         }} />
       )}
     </button>
@@ -868,9 +883,12 @@ const PANEL_CONTENT = {
 }
 
 // Mapeia planeta -> projeto para pegar o panelStyle
+// Define a identidade da moldura do painel (fundo, borda, acento) por planeta.
+// Sem entrada aqui, o painel cai no preto padrao mesmo com panelStyle definido.
 const PLANET_PROJECT = {
   projects: () => PROJECTS_DONE.find(p => p.id === 'solid'),
   wip:      () => PROJECTS_DONE.find(p => p.id === 'ecommerce'),
+  livro:    () => PROJECTS_DONE.find(p => p.id === 'livro'),
 }
 
 const PLANET_ORDER = ['hero', 'projects', 'wip', 'livro', 'contact']
@@ -1048,7 +1066,7 @@ export default function SectionPanel() {
                       height: isCurrent ? 9 : 6,
                       borderRadius: '50%',
                       background: isCurrent ? meta.color : 'transparent',
-                      border: `1.5px solid ${isCurrent ? meta.color : 'rgba(255,255,255,0.2)'}`,
+                      border: `1.5px solid ${isCurrent ? meta.color : contraste(panelBg, 0.22)}`,
                       boxShadow: isCurrent ? `0 0 10px ${meta.color}AA` : 'none',
                       transition: 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)',
                       flexShrink: 0,
@@ -1060,7 +1078,7 @@ export default function SectionPanel() {
               <button onClick={closePanel} aria-label="Fechar painel" style={{
                 width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(255,255,255,0.06)', border: `1px solid ${panelBorder}`,
+                background: contraste(panelBg, 0.06), border: `1px solid ${panelBorder}`,
                 color: ps?.textMuted || '#9ca3af', fontSize: 14,
                 pointerEvents: 'auto', cursor: 'pointer',
               }}>&#x2715;</button>
