@@ -160,7 +160,7 @@ function ScreenshotHero({ images, project }) {
       'Dashboard Admin', 'Gestão de Produtos',
     ],
     livro: [
-      'Abertura — Oferta', 'Índice de Capítulos', 'Fechamento — CTA',
+      'Abertura no celular', 'Capítulos de amostra', 'Fechamento e créditos',
     ],
   }
   const LABELS = LABELS_BY_PROJECT[project?.id] || []
@@ -751,7 +751,7 @@ const PLANET_META = {
   hero:     { label: 'Início',  color: '#7B2FF7', t: 0.08 },
   projects: { label: 'SOLID',   color: '#42BFDD', t: 0.29 },
   wip:      { label: 'E-commerce', color: '#39FF14', t: 0.55 },
-  livro:    { label: 'Página de venda', color: '#E3B23C', t: 0.76 },
+  livro:    { label: 'Site de livro', color: '#E3B23C', t: 0.76 },
   contact:  { label: 'Contato', color: '#00FFF0', t: 0.95 },
 }
 

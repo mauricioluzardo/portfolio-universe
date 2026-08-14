@@ -174,17 +174,17 @@ export const PROJECTS_DONE = [
   {
     id: 'livro',
     name: 'livrodoadriano.com.br',
-    subtitle: 'Página de venda de produto digital',
-    hook: 'Uma página de venda tem um trabalho só: transformar visita em compra. Esta foi construída para um público que lê no celular, à noite, com pouca paciência — carregamento rápido, leitura confortável e checkout a um toque.',
+    subtitle: 'Site de um livro independente',
+    hook: 'Um livro escrito por um pai sobre o filho. O site tinha uma tarefa só: sair da frente. Abrir rápido no celular, ser confortável de ler à noite e deixar quem chega ali encontrar a história sem obstáculo.',
     description:
-      'Landing page de produto digital construída do zero: narrativa em uma página só, tipografia editorial pensada para leitura longa no celular, amostra gratuita antes da oferta e checkout externo integrado. Estrutura de conversão com prova social, quebra de objeções por FAQ e CTA recorrente ao longo da rolagem. SEO técnico completo com sitemap e Open Graph, área administrativa própria e domínio dedicado.',
+      'Site construído do zero para um livro independente. Toda a leitura acontece em uma página só, com tipografia editorial escolhida para textos longos no celular — que é onde este público lê, quase sempre à noite. Traz capítulos de amostra abertos antes de qualquer decisão, dúvidas respondidas em linguagem simples e a compra concluída fora do site, sem cadastro. Por baixo: SEO técnico com sitemap e Open Graph para o link chegar bonito quando compartilhado, área administrativa própria e domínio dedicado.',
     tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Mobile-first', 'SEO técnico'],
     status: 'live',
     statusLabel: 'No ar',
     color: '#1A2150',
     glowColor: '#E3B23C',
     link: 'https://livrodoadriano.com.br',
-    stats: 'Mobile-first · Checkout integrado · No ar',
+    stats: 'Feito para ler no celular · Capítulos de amostra · No ar',
     // Tema do painel — paleta da identidade: céu noturno + dourado
     panelStyle: {
       bg:          '#141A3C',
@@ -197,7 +197,7 @@ export const PROJECTS_DONE = [
       textColor:   '#C9D8F5',
       textMuted:   '#8494C4',
       divider:     'rgba(227,178,60,0.14)',
-      badgeLabel:  'PÁGINA DE VENDA — NO AR',
+      badgeLabel:  'SITE DE LIVRO — NO AR',
       badgeBg:     '#E3B23C',
       badgeColor:  '#1A2150',
       badgeBorder: '#E3B23C',

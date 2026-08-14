@@ -47,10 +47,10 @@ const ZONES = [
   },
   {
     tMin: 0.67, tMax: 0.83, // livro: texto entra 0.03 antes do painel (t=0.70)
-    line1: 'PÁGINA QUE',
-    line2: 'VENDE SOZINHA.',
-    sub: 'Página de venda de produto digital construída para quem lê no celular, à noite: carregamento rápido, tipografia de leitura longa, amostra antes da oferta e checkout a um toque.',
-    micro: 'Mobile-first · Amostra grátis · Checkout integrado · No ar',
+    line1: 'QUANDO O SITE',
+    line2: 'SAI DA FRENTE.',
+    sub: 'Site de um livro independente. O trabalho aqui foi técnico e discreto: abrir rápido no celular, ser confortável de ler à noite e não competir com a história. Capítulos de amostra abertos antes de qualquer decisão.',
+    micro: 'Feito para ler no celular · Capítulos de amostra · No ar',
     color: '#E3B23C',
     glow: '#1A2150',
   },
