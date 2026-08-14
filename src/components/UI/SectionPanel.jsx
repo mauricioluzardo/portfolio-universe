@@ -27,14 +27,47 @@ const contraste = (bg, opacidade) =>
 
 
 // Ilustracoes de ambiente do painel do livro — as mesmas que atravessam a
-// landing page: caneta, carrinho, carretel de linha, pote de canetas e o
-// infinito. Posicoes, tamanhos e duracoes copiados do site.
+// landing page. Aqui elas cobrem TODA a altura do painel, com cada desenho
+// inteiro: em painel que rola muito (mobile), poucos desenhos soltos viravam
+// pedacos cortados nas bordas. Posicoes fixas, nunca aleatorias, para nao
+// mudarem a cada render.
+//   cima/esq em %, largura em px, giro em graus, dur/atraso em segundos
 const AMB_LIVRO = [
-  { nome: 'caneta',   vb: '0 0 56 330',  larg: 74,  esq: '6%',   topo: '-4%', dur: 74,  atraso: 0,   modo: 'flutua' },
-  { nome: 'carrinho', vb: '0 0 220 110', larg: 128, esq: '-20%', topo: '34%', dur: 58,  atraso: -8,  modo: 'atravessa' },
-  { nome: 'carretel', vb: '0 0 130 150', larg: 72,  esq: '72%',  topo: '70%', dur: 128, atraso: -30, modo: 'flutua' },
-  { nome: 'canetas',  vb: '0 0 160 190', larg: 82,  esq: '14%',  topo: '48%', dur: 104, atraso: -70, modo: 'flutua' },
-  { nome: 'infinito', vb: '0 0 120 60',  larg: 66,  esq: '78%',  topo: '18%', dur: 92,  atraso: -45, modo: 'flutua' },
+  { d: 'caneta',   esq: 4,  cima: 1,  larg: 58, giro: -12, dur: 74,  atraso: 0 },
+  { d: 'infinito', esq: 62, cima: 4,  larg: 62, giro: 8,   dur: 92,  atraso: -45 },
+  { d: 'carretel', esq: 30, cima: 8,  larg: 54, giro: 14,  dur: 128, atraso: -30 },
+  { d: 'canetas',  esq: 68, cima: 13, larg: 62, giro: -6,  dur: 104, atraso: -70 },
+  { d: 'caneta',   esq: 20, cima: 18, larg: 52, giro: 22,  dur: 86,  atraso: -20 },
+  { d: 'carretel', esq: 58, cima: 24, larg: 58, giro: -16, dur: 112, atraso: -55 },
+  { d: 'caneta',   esq: 6,  cima: 30, larg: 62, giro: 6,   dur: 96,  atraso: -12 },
+  { d: 'infinito', esq: 36, cima: 36, larg: 58, giro: -10, dur: 88,  atraso: -62 },
+  { d: 'canetas',  esq: 66, cima: 40, larg: 58, giro: 12,  dur: 118, atraso: -35 },
+  { d: 'caneta',   esq: 24, cima: 46, larg: 56, giro: -20, dur: 78,  atraso: -80 },
+  { d: 'carretel', esq: 4,  cima: 52, larg: 52, giro: 9,   dur: 124, atraso: -18 },
+  { d: 'caneta',   esq: 62, cima: 56, larg: 60, giro: 16,  dur: 92,  atraso: -50 },
+  { d: 'infinito', esq: 30, cima: 62, larg: 60, giro: -7,  dur: 100, atraso: -26 },
+  { d: 'canetas',  esq: 8,  cima: 68, larg: 60, giro: 11,  dur: 110, atraso: -68 },
+  { d: 'caneta',   esq: 64, cima: 73, larg: 54, giro: -14, dur: 82,  atraso: -8 },
+  { d: 'carretel', esq: 34, cima: 79, larg: 56, giro: 18,  dur: 120, atraso: -40 },
+  { d: 'caneta',   esq: 6,  cima: 85, larg: 58, giro: -5,  dur: 90,  atraso: -74 },
+  { d: 'infinito', esq: 60, cima: 90, larg: 58, giro: 13,  dur: 96,  atraso: -22 },
+]
+
+// viewBox de cada desenho
+const VB_AMB = {
+  caneta:   '0 0 56 330',
+  carrinho: '0 0 220 110',
+  carretel: '0 0 130 150',
+  canetas:  '0 0 160 190',
+  infinito: '0 0 120 60',
+}
+
+// O carrinho e a excecao: em vez de derivar no lugar, atravessa o painel —
+// exatamente como faz na pagina.
+const CARRINHOS = [
+  { cima: 22, larg: 116, dur: 58, atraso: -8 },
+  { cima: 58, larg: 128, dur: 74, atraso: -40 },
+  { cima: 88, larg: 104, dur: 66, atraso: -25 },
 ]
 
 function DesenhoAmb({ nome }) {
@@ -92,15 +125,23 @@ function AmbienteLivro() {
       position: 'absolute', inset: 0, overflow: 'hidden',
       pointerEvents: 'none', zIndex: 0,
     }}>
-      {AMB_LIVRO.map(d => (
-        <span key={d.nome}
-          className={`livro-amb livro-${d.modo}`}
+      {AMB_LIVRO.map((it, i) => (
+        <span key={`f${i}`} className="livro-amb livro-flutua"
           style={{
-            left: d.esq, top: d.topo, width: d.larg,
-            animationDuration: `${d.dur}s`,
-            animationDelay: `${d.atraso}s`,
+            left: `${it.esq}%`, top: `${it.cima}%`, width: it.larg,
+            animationDuration: `${it.dur}s`, animationDelay: `${it.atraso}s`,
+            ['--giro']: `${it.giro}deg`,
           }}>
-          <svg viewBox={d.vb}><DesenhoAmb nome={d.nome} /></svg>
+          <svg viewBox={VB_AMB[it.d]}><DesenhoAmb nome={it.d} /></svg>
+        </span>
+      ))}
+      {CARRINHOS.map((c, i) => (
+        <span key={`c${i}`} className="livro-amb livro-atravessa"
+          style={{
+            top: `${c.cima}%`, width: c.larg,
+            animationDuration: `${c.dur}s`, animationDelay: `${c.atraso}s`,
+          }}>
+          <svg viewBox={VB_AMB.carrinho}><DesenhoAmb nome="carrinho" /></svg>
         </span>
       ))}
     </div>

@@ -100,19 +100,23 @@ html, body {
 }
 
 /* ─── Ambiente do painel do livrodoadriano.com.br ────────────────────────────
-   Reproduz as ilustrações que atravessam a landing page. Copiado do site:
-   .flutua deriva devagar com rotação; .atravessa é o carrinho cruzando.
-   O site usa opacidade .07/.06, mas ali os desenhos são grandes numa página
-   inteira. No painel, estreito, isso some — daí .26/.24, que dá um traço
-   visível (#C4C4C2 sobre o creme) sem competir com o texto.                  */
+   Reproduz as ilustrações que atravessam a landing page. Do site: .flutua
+   deriva devagar com rotação, .atravessa é o carrinho cruzando.
+
+   Duas diferenças conscientes em relação ao site:
+   1. Opacidade .20/.18 em vez de .07/.06 — lá os desenhos são grandes numa
+      página inteira; aqui, num painel estreito, 7% dá #EEECE8 e some.
+   2. Cada desenho tem giro próprio (--giro) e a deriva é curta, porque o
+      campo é denso: são 18 desenhos cobrindo toda a altura do painel, para
+      que em telas pequenas apareçam desenhos inteiros e não pedaços.        */
 @keyframes livroFlutua {
-  0%   { transform: translate3d(0,  34px, 0) rotate(-8deg); }
-  50%  { transform: translate3d(18px, -38px, 0) rotate(10deg); }
-  100% { transform: translate3d(0,  34px, 0) rotate(-8deg); }
+  0%   { transform: translate3d(0,   16px, 0) rotate(calc(var(--giro, 0deg) - 7deg)); }
+  50%  { transform: translate3d(10px,-18px, 0) rotate(calc(var(--giro, 0deg) + 8deg)); }
+  100% { transform: translate3d(0,   16px, 0) rotate(calc(var(--giro, 0deg) - 7deg)); }
 }
 @keyframes livroAtravessa {
-  0%   { left: -22%; transform: translateY(0); }
-  100% { left: 118%; transform: translateY(-26px); }
+  0%   { left: -24%; transform: translateY(0) }
+  100% { left: 120%; transform: translateY(-22px) }
 }
 .livro-amb {
   position: absolute;
@@ -123,9 +127,10 @@ html, body {
   color: #22262E;
 }
 .livro-amb svg { width: 100%; height: auto; display: block; }
-.livro-flutua   { opacity: 0.26; animation-name: livroFlutua; }
-.livro-atravessa{ opacity: 0.24; animation-name: livroAtravessa; }
+.livro-flutua   { opacity: 0.20; animation-name: livroFlutua; }
+.livro-atravessa{ opacity: 0.18; animation-name: livroAtravessa; }
 
+/* Quem pediu menos movimento vê os desenhos parados, não sem eles. */
 @media (prefers-reduced-motion: reduce) {
   .livro-amb { animation: none; }
 }
