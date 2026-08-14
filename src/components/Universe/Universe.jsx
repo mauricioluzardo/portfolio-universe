@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
 import { Environment } from '@react-three/drei'
 import StarField from './StarField'
-import Nebula from './Nebula'
 import HeroPlanet from '../Planets/HeroPlanet'
 import ProjectsPlanet from '../Planets/ProjectsPlanet'
 import WIPPlanet from '../Planets/WIPPlanet'
+import LivroPlanet from '../Planets/LivroPlanet'
 import ContactPlanet from '../Planets/ContactPlanet'
 import ScrollCamera from '../Camera/ScrollCamera'
 import PostProcessing from '../Effects/PostProcessing'
@@ -31,7 +31,7 @@ export default function Universe() {
         <StarField count={12000} />
       </Suspense>
 
-      {/* 4 planetas com texturas PBR reais.
+      {/* 5 planetas com texturas PBR reais.
           Um Suspense por planeta: cada um aparece assim que SUAS texturas chegam,
           em vez de esperar o conjunto inteiro (o Hero é o primeiro na câmera). */}
       <Suspense fallback={null}>
@@ -42,6 +42,9 @@ export default function Universe() {
       </Suspense>
       <Suspense fallback={null}>
         <WIPPlanet      position={[80, -10, -100]} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <LivroPlanet    position={[30, 18, -142]} />
       </Suspense>
       <Suspense fallback={null}>
         <ContactPlanet  position={[-20, 15, -160]} />

@@ -4,6 +4,7 @@ const PLANETS = [
   { id: 'hero',     label: 'Início',   color: '#7B2FF7' },
   { id: 'projects', label: 'SOLID',    color: '#42BFDD' },
   { id: 'wip',      label: 'E-commerce', color: '#39FF14' },
+  { id: 'livro',    label: 'Página de venda', color: '#E3B23C' },
   { id: 'contact',  label: 'Contato',  color: '#00FFF0' },
 ]
 

@@ -5,19 +5,21 @@ import { useUniverseStore } from '../../store/universeStore'
 // Regra: texto começa ANTES do painel para já estar visível quando ele abre.
 // PLANET_ZONES (painel)  vs  ZONES (texto overlay):
 //
-//  Planeta   Painel abre   Texto começa  Diferença   Painel fecha  Texto some
+//  Planeta   Painel abre   Texto começa   Painel fecha  Texto some
 //  ─────────────────────────────────────────────────────────────────────────────
-//  hero      t=0.04        t=-0.10       texto já visível no load   0.16   0.16
-//  projects  t=0.22        t=0.19        texto visível 3 ticks antes 0.50  0.50
-//  wip       t=0.55        t=0.52        texto visível 3 ticks antes 0.74  0.74
-//  contact   t=0.82        t=0.79        texto visível 3 ticks antes 0.99  1.00
+//  hero      t=0.03        t=-0.10 (já visível no load)   0.13   0.13
+//  projects  t=0.19        t=0.16                          0.40   0.40
+//  wip       t=0.45        t=0.42                          0.62   0.62
+//  livro     t=0.70        t=0.67                          0.83   0.83
+//  contact   t=0.90        t=0.87                          0.99   1.00
 //
 // NÃO ALTERAR estes valores sem recalibrar os dois sistemas juntos.
-// LOOK_TARGETS: câmera vira p/ projects em t=0.1875, WIP em t=0.50, contact em t=0.8125
+// São 20 waypoints (t = índice/19). LOOK_TARGETS vira a câmera para
+// projects em t=0.158, wip em t=0.421, livro em t=0.684, contact em t=0.895.
 // ─────────────────────────────────────────────────────────────────────────────
 const ZONES = [
   {
-    tMin: -0.10, tMax: 0.16, // hero: visível desde o load, some em t=0.16
+    tMin: -0.10, tMax: 0.13, // hero: visível desde o load, some em t=0.13
     line1: 'SISTEMAS QUE',
     line2: 'TRABALHAM POR VOCÊ.',
     sub: 'Construo operações digitais completas — CRM, SaaS, e-commerce e IA — que escalam sem precisar de você no meio do processo. Cada planeta aqui é um sistema real.',
@@ -26,7 +28,7 @@ const ZONES = [
     glow: '#7B2FF7',
   },
   {
-    tMin: 0.19, tMax: 0.50, // SOLID: texto aparece 3 ticks antes do painel (t=0.22)
+    tMin: 0.16, tMax: 0.40, // SOLID: texto entra 0.03 antes do painel (t=0.19)
     line1: 'SOLID.',
     line2: 'ZERO PLANILHA.',
     sub: '400 agenciados. Motor financeiro T1/T2/T3. CEO Intelligence. Scout com IA. WhatsApp com classificação automática. Construído do zero porque nenhum CRM do mercado entendia a Kwai.',
@@ -35,7 +37,7 @@ const ZONES = [
     glow: '#084B83',
   },
   {
-    tMin: 0.52, tMax: 0.74, // Voigt: texto aparece 3 ticks antes do painel (t=0.55)
+    tMin: 0.42, tMax: 0.62, // e-commerce: texto entra 0.03 antes do painel (t=0.45)
     line1: 'E-COMMERCE',
     line2: 'QUE CONVERTE.',
     sub: 'Loja completa com Mercado Pago nativo, carrinho persistente, checkout fluido e design mobile-first. Construída para converter — não para impressionar no Behance.',
@@ -44,7 +46,16 @@ const ZONES = [
     glow: '#1B4332',
   },
   {
-    tMin: 0.79, tMax: 1.00, // contact: texto aparece 3 ticks antes do painel (t=0.82)
+    tMin: 0.67, tMax: 0.83, // livro: texto entra 0.03 antes do painel (t=0.70)
+    line1: 'PÁGINA QUE',
+    line2: 'VENDE SOZINHA.',
+    sub: 'Página de venda de produto digital construída para quem lê no celular, à noite: carregamento rápido, tipografia de leitura longa, amostra antes da oferta e checkout a um toque.',
+    micro: 'Mobile-first · Amostra grátis · Checkout integrado · No ar',
+    color: '#E3B23C',
+    glow: '#1A2150',
+  },
+  {
+    tMin: 0.87, tMax: 1.00, // contact: texto entra 0.03 antes do painel (t=0.90)
     line1: 'VENHA FAZER PARTE',
     line2: 'DESTA CONSTELAÇÃO.',
     sub: 'Cada planeta aqui foi construído do zero. O próximo pode ser o seu projeto. SaaS, CRM, portal com IA, e-commerce — vamos conversar.',

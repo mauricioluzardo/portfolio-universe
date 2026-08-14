@@ -159,6 +159,9 @@ function ScreenshotHero({ images, project }) {
       'Vitrine — Hero', 'Mais Vendidos', 'Página de Categoria',
       'Dashboard Admin', 'Gestão de Produtos',
     ],
+    livro: [
+      'Abertura — Oferta', 'Índice de Capítulos', 'Fechamento — CTA',
+    ],
   }
   const LABELS = LABELS_BY_PROJECT[project?.id] || []
 
@@ -603,22 +606,28 @@ function WIPContent() {
   )
 }
 
-// Planeta 4 — Faça Parte / Contato
+function LivroContent() {
+  const livro = PROJECTS_DONE.find(p => p.id === 'livro')
+  const ps    = livro?.panelStyle
+  return (
+    <div className="space-y-4">
+      {ps && (
+        <div className="flex items-center gap-2">
+          <span style={{
+            fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+            fontFamily: '"Inter", ui-sans-serif', fontWeight: 700,
+            padding: '4px 10px', borderRadius: 4,
+            background: ps.badgeBg, color: ps.badgeColor,
+          }}>{ps.badgeLabel}</span>
+        </div>
+      )}
+      {livro && <ProjectCard project={livro} />}
+    </div>
+  )
+}
+
+// Planeta 5 — Faça Parte / Contato
 function ContactContent() {
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    const data = new FormData(e.target)
-    const nome = data.get('nome') || ''
-    const email = data.get('email') || ''
-    const mensagem = data.get('mensagem') || ''
-    const body = encodeURIComponent(`Olá Mauricio,\n\nMeu nome é ${nome}.\n\n${mensagem}\n\nEmail para contato: ${email}`)
-    const subject = encodeURIComponent(`Contato pelo portfólio — ${nome}`)
-    window.open(`mailto:${OWNER.social.email}?subject=${subject}&body=${body}`)
-    setSubmitted(true)
-  }
-
   return (
     <div className="space-y-5">
 
@@ -679,62 +688,29 @@ function ContactContent() {
         ))}
       </div>
 
-      {/* Formulário */}
-      {submitted ? (
-        <div className="rounded-xl p-5 text-center space-y-3"
-          style={{ background: 'rgba(0,255,240,0.06)', border: '1px solid rgba(0,255,240,0.2)' }}>
-          <p className="text-2xl">🚀</p>
-          <p className="text-white font-bold text-base">Mensagem enviada!</p>
-          <p className="text-gray-300 text-sm leading-relaxed">
-            Seu cliente de email foi aberto com a mensagem pré-preenchida. Respondo em até 24h.
-          </p>
-          <button
-            onClick={() => setSubmitted(false)}
-            className="text-xs text-cyan-400 underline underline-offset-2"
-            style={{ pointerEvents: 'auto' }}>
-            Enviar outra mensagem
-          </button>
-        </div>
-      ) : (
-        <form className="space-y-3" onSubmit={handleSubmit}>
-          {[
-            { id: 'contact-nome', name: 'nome', label: 'Seu nome', type: 'text', placeholder: 'Como te chamo?', autoComplete: 'name' },
-            { id: 'contact-email', name: 'email', label: 'Email', type: 'email', placeholder: 'seu@email.com', autoComplete: 'email' },
-          ].map(f => (
-            <div key={f.id}>
-              <label htmlFor={f.id} className="text-xs text-cyan-400 uppercase tracking-wider">{f.label}</label>
-              <input id={f.id} name={f.name} type={f.type} autoComplete={f.autoComplete} required
-                className="w-full mt-1 px-4 py-2.5 bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400/60 transition-colors"
-                placeholder={f.placeholder} style={{ pointerEvents: 'auto' }} />
-            </div>
-          ))}
-          <div>
-            <label htmlFor="contact-mensagem" className="text-xs text-cyan-400 uppercase tracking-wider">Qual o seu desafio?</label>
-            <textarea id="contact-mensagem" name="mensagem" rows={3} required
-              className="w-full mt-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-cyan-400/60 transition-colors resize-none"
-              placeholder="Sistema, automacao, IA, site... me conta." style={{ pointerEvents: 'auto' }} />
-          </div>
-          <button type="submit"
-            className="w-full py-3 rounded-lg text-sm font-bold tracking-wide transition-all"
-            style={{
-              background: 'linear-gradient(135deg, rgba(0,255,240,0.15), rgba(155,95,227,0.15))',
-              border: '1px solid rgba(0,255,240,0.35)',
-              color: '#fff',
-              pointerEvents: 'auto',
-            }}>
-            Quero fazer parte desta constelação →
-          </button>
-        </form>
-      )}
+      {/* CTA único — conversa direto no WhatsApp, sem formulário */}
+      <a href={OWNER.social.whatsapp} target="_blank" rel="noreferrer"
+        className="block w-full py-3 rounded-lg text-sm font-bold tracking-wide text-center transition-all"
+        style={{
+          background: 'linear-gradient(135deg, rgba(37,211,102,0.18), rgba(0,255,240,0.10))',
+          border: '1px solid rgba(37,211,102,0.45)',
+          color: '#fff',
+          pointerEvents: 'auto',
+        }}>
+        Quero fazer parte desta constelação →
+      </a>
 
       <div className="space-y-2 pt-1 border-t border-white/10">
-        {/* WhatsApp — canal comercial, abre a conversa já com a mensagem escrita */}
+        {/* WhatsApp — botão sem expor o número; abre a conversa já com a mensagem escrita */}
         <a href={OWNER.social.whatsapp} target="_blank" rel="noreferrer"
-          className="flex items-center gap-3 text-sm font-medium text-emerald-200 hover:text-emerald-100 transition-colors"
-          style={{ pointerEvents: 'auto' }}>
-          <span className="text-emerald-400">✆</span>
-          {OWNER.social.whatsappLabel}
-          <span className="text-xs font-normal text-emerald-500/70">orçamento</span>
+          className="flex items-center justify-center gap-2 w-full py-2.5 mb-1 rounded-lg text-sm font-semibold transition-all"
+          style={{
+            pointerEvents: 'auto',
+            background: 'rgba(37,211,102,0.12)',
+            border: '1px solid rgba(37,211,102,0.45)',
+            color: '#7BE8A8',
+          }}>
+          <span aria-hidden="true">✆</span> Falar no WhatsApp
         </a>
         <a href={`mailto:${OWNER.social.email}`}
           className="flex items-center gap-3 text-sm text-gray-300 hover:text-cyan-300 transition-colors"
@@ -760,6 +736,7 @@ const PANEL_CONTENT = {
   hero: HeroContent,
   projects: ProjectsContent,
   wip: WIPContent,
+  livro: LivroContent,
   contact: ContactContent,
 }
 
@@ -769,12 +746,13 @@ const PLANET_PROJECT = {
   wip:      () => PROJECTS_DONE.find(p => p.id === 'ecommerce'),
 }
 
-const PLANET_ORDER = ['hero', 'projects', 'wip', 'contact']
+const PLANET_ORDER = ['hero', 'projects', 'wip', 'livro', 'contact']
 const PLANET_META = {
-  hero:     { label: 'Início',  color: '#7B2FF7', t: 0.10 },
-  projects: { label: 'SOLID',   color: '#42BFDD', t: 0.30 },
-  wip:      { label: 'E-commerce', color: '#39FF14', t: 0.62 },
-  contact:  { label: 'Contato', color: '#00FFF0', t: 0.88 },
+  hero:     { label: 'Início',  color: '#7B2FF7', t: 0.08 },
+  projects: { label: 'SOLID',   color: '#42BFDD', t: 0.29 },
+  wip:      { label: 'E-commerce', color: '#39FF14', t: 0.55 },
+  livro:    { label: 'Página de venda', color: '#E3B23C', t: 0.76 },
+  contact:  { label: 'Contato', color: '#00FFF0', t: 0.95 },
 }
 
 export default function SectionPanel() {
