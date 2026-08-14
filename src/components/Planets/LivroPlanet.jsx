@@ -94,7 +94,7 @@ export default function LivroPlanet({ position = [30, 18, -142] }) {
         <shaderMaterial
           vertexShader={atmosphereVert} fragmentShader={atmosphereFrag}
           uniforms={{
-            glowColor: { value: new THREE.Color('#E3B23C') },
+            glowColor: { value: new THREE.Color('#F0AF1E') },
             intensity: { value: 0.85 },
             power:     { value: 6.5 },
           }}
@@ -106,7 +106,7 @@ export default function LivroPlanet({ position = [30, 18, -142] }) {
       <ConstelacaoDourada radius={RADIUS + 5}  count={420} tilt={0.42}  speed={0.05} />
       <ConstelacaoDourada radius={RADIUS + 8.5} count={300} tilt={-0.3} speed={-0.03} />
 
-      <pointLight color="#E3B23C" intensity={3.2} distance={55} decay={1.8} />
+      <pointLight color="#F0AF1E" intensity={3.2} distance={55} decay={1.8} />
     </group>
   )
 }

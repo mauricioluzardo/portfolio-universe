@@ -140,6 +140,116 @@ function VoigtThumbCard({ img, index, isActive, onClick }) {
   )
 }
 
+// Thumbnail do site do livro — reproduz a identidade da pagina: fundo creme,
+// titulo em serifa, rotulo vermelho em versalete e a barra fixa de compra que
+// acompanha o leitor em todas as telas. Cores amostradas do site.
+function LivroThumbCard({ img, index, isActive, onClick }) {
+  const serif = '"Playfair Display", Georgia, serif'
+  const sans  = '"Inter", ui-sans-serif, system-ui'
+  const CREME    = '#FDFBF6'
+  const VERMELHO = '#C9323B'
+  const TINTA    = '#22262E'
+  return (
+    <button onClick={onClick} aria-label={`Ver tela ${index + 1}`} aria-pressed={isActive} style={{
+      flexShrink: 0, width: 76, height: 58, borderRadius: 4,
+      overflow: 'hidden', display: 'flex', flexDirection: 'column',
+      position: 'relative', background: CREME,
+      border: `1px solid ${isActive ? 'rgba(240,175,30,0.7)' : 'rgba(34,38,46,0.18)'}`,
+      boxShadow: isActive ? '0 0 18px rgba(240,175,30,0.22)' : 'none',
+      opacity: isActive ? 1 : 0.46,
+      transition: 'all 200ms cubic-bezier(0.25,0.46,0.45,0.94)',
+      cursor: 'pointer',
+    }}>
+      {/* Miolo — esquerda: titulo em serifa sobre as ilustracoes que flutuam
+          no site (a caneta e o carrinho, hiperfocos do Adriano).
+          Direita: a tela do celular. */}
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', background: CREME }}>
+        <div style={{
+          width: 34, flexShrink: 0, position: 'relative', overflow: 'hidden',
+          padding: '0 0 0 3px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        }}>
+          {/* caneta */}
+          <svg viewBox="0 0 56 330" style={{
+            position: 'absolute', left: 0, top: 4, height: 40, opacity: 0.3,
+          }} fill="none" stroke={TINTA} strokeWidth="9" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M 17 20 L 35 20" />
+            <path d="M 17 20 L 15 92 M 35 20 L 37 92" />
+            <path d="M 35 27 Q 46 31 45 48 L 44 72 Q 44 78 38 79" />
+            <path d="M 15 92 L 37 92" />
+            <path d="M 16 92 L 16 264 M 36 92 L 36 264" />
+            <path d="M 16 264 L 26 302 L 36 264" />
+            <path d="M 26 302 L 26 313" />
+          </svg>
+          {/* carrinho */}
+          <svg viewBox="0 0 220 110" style={{
+            position: 'absolute', right: -2, bottom: 1, width: 28, opacity: 0.3,
+          }} fill="none" stroke={TINTA} strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M 14 78 L 14 64 Q 16 56 34 54 L 68 51 L 88 27 Q 92 23 104 23
+                     L 140 23 Q 150 23 154 28 L 168 50 L 198 56 Q 206 58 206 66 L 206 78" />
+            <path d="M 14 78 L 41 78 M 75 78 L 145 78 M 179 78 L 206 78" />
+            <circle cx="58" cy="78" r="17" />
+            <circle cx="162" cy="78" r="17" />
+          </svg>
+          <span style={{
+            position: 'relative', fontFamily: serif, fontSize: 7, fontWeight: 500,
+            color: TINTA, lineHeight: 1.02, display: 'block',
+          }}>O Acon-</span>
+          <span style={{
+            position: 'relative', fontFamily: serif, fontSize: 7, fontWeight: 500,
+            color: TINTA, lineHeight: 1.02, display: 'block',
+          }}>chego</span>
+          <span style={{
+            position: 'relative', fontFamily: sans, fontSize: 2.4, fontWeight: 700,
+            color: VERMELHO, letterSpacing: '0.18em', marginTop: 1.5, display: 'block',
+          }}>A HISTORIA</span>
+        </div>
+        <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: CREME }}>
+          <img src={img.src} alt="" loading="lazy" decoding="async"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+        </div>
+      </div>
+
+      {/* Barra fixa de compra — presente em toda a navegacao do site */}
+      <div style={{
+        height: 13, flexShrink: 0, background: CREME,
+        borderTop: '1px solid rgba(34,38,46,0.10)',
+        display: 'flex', alignItems: 'center', gap: 3,
+        paddingLeft: 3, paddingRight: 3,
+      }}>
+        <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+          <span style={{ fontFamily: serif, fontSize: 5.5, fontWeight: 500, color: TINTA }}>R$</span>
+          <span style={{ fontFamily: sans, fontSize: 2.4, color: 'rgba(34,38,46,0.5)', marginTop: 0.5 }}>digital</span>
+        </div>
+        <div style={{
+          marginLeft: 'auto', background: VERMELHO, borderRadius: 2,
+          padding: '2.5px 6px', display: 'flex', alignItems: 'center',
+        }}>
+          <span style={{ fontFamily: sans, fontSize: 3.2, fontWeight: 700, color: '#fff', letterSpacing: '0.02em' }}>
+            Quero ler
+          </span>
+        </div>
+      </div>
+
+      {/* Numero da tela + fio dourado, no lugar do indicador do carrossel */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 8,
+        display: 'flex', alignItems: 'center', paddingLeft: 3, paddingRight: 3,
+        background: 'linear-gradient(to bottom, rgba(253,251,246,0.92), rgba(253,251,246,0))',
+      }}>
+        <span style={{ fontFamily: sans, fontSize: 4, fontWeight: 700, color: VERMELHO, letterSpacing: '0.08em' }}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+      </div>
+      {isActive && (
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
+          background: 'linear-gradient(90deg,#F0AF1E,#F7CF74,#C9323B)',
+        }} />
+      )}
+    </button>
+  )
+}
+
 function ScreenshotHero({ images, project }) {
   const [current, setCurrent] = useState(0)
   const imgs = normalizeImages(images)
@@ -160,7 +270,8 @@ function ScreenshotHero({ images, project }) {
       'Dashboard Admin', 'Gestão de Produtos',
     ],
     livro: [
-      'Abertura no celular', 'Capítulos de amostra', 'Fechamento e créditos',
+      'Abertura', 'Folheie o livro', 'Amostra grátis',
+      'Como comprar', 'Perguntas', 'Fechamento',
     ],
   }
   const LABELS = LABELS_BY_PROJECT[project?.id] || []
@@ -249,6 +360,10 @@ function ScreenshotHero({ images, project }) {
             // Voigt: renderiza product card exato do site (não screenshot genérico)
             if (project?.id === 'ecommerce') {
               return <VoigtThumbCard key={i} img={img} index={i} isActive={isActive} onClick={() => setCurrent(i)} />
+            }
+            // Livro: card com a identidade do site (creme, serifa, barra de compra)
+            if (project?.id === 'livro') {
+              return <LivroThumbCard key={i} img={img} index={i} isActive={isActive} onClick={() => setCurrent(i)} />
             }
 
             // borderRadius do tema (Pinky DS=8px rounded)
@@ -474,6 +589,37 @@ function ProjectCard({ project }) {
       <p style={{ fontSize: '15px', lineHeight: 1.7, color: textColor, marginBottom: 0 }}>
         {project.hook || project.description.split('.').slice(0, 2).join('.') + '.'}
       </p>
+
+      {/* Decisoes de projeto — opcional, aparece so em quem define project.notes.
+          Serve para mostrar o raciocinio por tras do resultado. */}
+      {project.notes?.length > 0 && (
+        <>
+          <div style={{ height: 1, background: dividerCol, margin: '20px 0' }} />
+          <p style={{
+            fontSize: '10px', letterSpacing: '0.3em', color: textMuted,
+            fontFamily: '"JetBrains Mono", monospace', textTransform: 'uppercase',
+            marginBottom: 14,
+          }}>
+            {project.notesLabel || 'Decisões de projeto'}
+          </p>
+          <div className="space-y-3">
+            {project.notes.map(({ title, text }) => (
+              <div key={title} style={{ display: 'flex', gap: 10 }}>
+                <span style={{ color: accent, fontSize: 11, lineHeight: 1.7, flexShrink: 0 }}>▸</span>
+                <div>
+                  <span style={{
+                    fontSize: '13px', fontWeight: 600, color: titleColor,
+                    fontFamily: titleFont, display: 'block', lineHeight: 1.35,
+                  }}>{title}</span>
+                  <span style={{ fontSize: '12.5px', color: textColor, lineHeight: 1.5 }}>
+                    {text}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {hasFull && (
         <>
@@ -751,7 +897,7 @@ const PLANET_META = {
   hero:     { label: 'Início',  color: '#7B2FF7', t: 0.08 },
   projects: { label: 'SOLID',   color: '#42BFDD', t: 0.29 },
   wip:      { label: 'E-commerce', color: '#39FF14', t: 0.55 },
-  livro:    { label: 'Site de livro', color: '#E3B23C', t: 0.76 },
+  livro:    { label: 'Site de livro', color: '#F0AF1E', t: 0.76 },
   contact:  { label: 'Contato', color: '#00FFF0', t: 0.95 },
 }
 

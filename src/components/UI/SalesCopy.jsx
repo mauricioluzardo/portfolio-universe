@@ -51,8 +51,8 @@ const ZONES = [
     line2: 'SAI DA FRENTE.',
     sub: 'Site de um livro independente. O trabalho aqui foi técnico e discreto: abrir rápido no celular, ser confortável de ler à noite e não competir com a história. Capítulos de amostra abertos antes de qualquer decisão.',
     micro: 'Feito para ler no celular · Capítulos de amostra · No ar',
-    color: '#E3B23C',
-    glow: '#1A2150',
+    color: '#F0AF1E',
+    glow: '#22262E',
   },
   {
     tMin: 0.87, tMax: 1.00, // contact: texto entra 0.03 antes do painel (t=0.90)
