@@ -623,11 +623,13 @@ function ProjectCard({ project }) {
 
   // Tech badge — em painel claro o chip escuro fica um bloco preto sobre o
   // creme; ali o fundo vem do proprio papel do projeto.
-  const tagBg      = painelClaro(ps?.bg)
+  // O projeto pode definir a aparencia das tags (tagBg/tagColor/tagBorder).
+  // Sem isso, cai no padrao: chip escuro em painel escuro, claro em painel claro.
+  const tagBg      = ps?.tagBg || (painelClaro(ps?.bg)
     ? 'rgba(34,38,46,0.05)'
-    : (ps?.id === 'ecommerce' ? 'rgba(8,8,8,0.9)' : 'rgba(30,41,59,0.9)')
-  const tagBorder  = ps ? `1px solid ${ps.divider || 'rgba(51,65,85,0.7)'}` : '1px solid rgba(51,65,85,0.7)'
-  const tagColor   = ps?.titleColor || '#F1F5F9'
+    : (ps?.id === 'ecommerce' ? 'rgba(8,8,8,0.9)' : 'rgba(30,41,59,0.9)'))
+  const tagBorder  = `1px solid ${ps?.tagBorder || ps?.divider || 'rgba(51,65,85,0.7)'}`
+  const tagColor   = ps?.tagColor || ps?.titleColor || '#F1F5F9'
   const tagFont    = ps?.titleFont  || '"Inter","Roboto",ui-sans-serif'
   const tagRadius  = project.thumbTheme?.borderRadius ?? 9999
 
@@ -714,6 +716,20 @@ function ProjectCard({ project }) {
         </>
       )}
 
+      {/* Credito — aparece so em projeto que teve outra mao envolvida.
+          Fica junto das tags, no fim, sem competir com o conteudo. */}
+      {project.credits && (
+        <>
+          <div style={{ height: 1, background: dividerCol, margin: '20px 0' }} />
+          <p style={{
+            fontSize: '11.5px', lineHeight: 1.5, color: textMuted,
+            fontFamily: '"Inter", ui-sans-serif', fontStyle: 'italic',
+          }}>
+            {project.credits}
+          </p>
+        </>
+      )}
+
       {/* Tech tags */}
       <div style={{ height: 1, background: dividerCol, margin: '20px 0' }} />
       <div className="flex flex-wrap gap-1.5">
@@ -747,8 +763,8 @@ function HeroContent() {
       <div className="grid grid-cols-3 gap-2">
         {[
           { n: '+10k', label: 'streamers gerenciados' },
-          { n: '+1Bi', label: 'resultados gerados' },
-          { n: '5+',   label: 'anos de operação' },
+          { n: '+1Bi', label: 'diamantes na Kwai' },
+          { n: '2023', label: 'operando desde' },
         ].map(({ n, label }) => (
           <div key={label} className="p-2 text-center" style={{ background: 'rgba(123,47,247,0.08)', border: '1px solid rgba(123,47,247,0.25)' }}>
             <p className="text-lg font-bold text-violet-300">{n}</p>
@@ -901,7 +917,7 @@ function ContactContent() {
       <div className="space-y-1.5">
         {[
           'Site ou sistema completo do zero',
-          'IA integrada à operação (Claude, OpenAI)',
+          'IA integrada à operação, onde ela realmente resolve',
           'CRM, ERP ou plataforma SaaS',
           'Automações que eliminam trabalho manual',
           'Estratégia digital + execução técnica',

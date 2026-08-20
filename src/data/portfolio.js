@@ -20,15 +20,17 @@ const WHATSAPP_MENSAGEM = 'Olá, vim para um orçamento, pode me ajudar?'
 
 export const OWNER = {
   name: 'Mauricio Monaco Luzardo',
-  title: 'Fundador & CEO · Sistemas, IA e Operações Digitais',
-  tagline: 'Construo sistemas que trabalham 24/7 pelo seu negócio — com processo, IA de ponta e resultado mensurável.',
+  title: 'Fundador & CEO · Sistemas, produtos digitais e operação',
+  tagline: 'Não entrego site nem código. Entrego operação funcionando — e opero a minha própria com os sistemas que construí.',
   description: [
-    'Fundador da Live Academy Brasil: 5+ anos escalando uma operação com +10 mil streamers, +1Bi de resultados e +30 milhões de audiência mensal — tudo suportado por sistemas que eu mesmo construí.',
-    'Desenvolvo CRMs, ERPs, e-commerces e portais completos do zero. Não entrego código: entrego operação funcionando.',
-    'Integro Claude, OpenAI e agentes de IA diretamente no core do negócio — automações, qualificação de leads, geração de conteúdo, audiobooks e muito mais.',
-    'Minha diferença: entendo de negócio antes de escrever uma linha de código. Estratégia + execução + IA = escala real.',
+    'Fundador da Live Academy Brasil, agência de cooperação oficial da Kwai no Brasil: 400 agenciados hoje, +10 mil streamers desenvolvidos desde 2023. A operação inteira roda sobre um ERP que eu construí — em produção, com uma equipe dependendo dele para trabalhar todo dia. Não é demonstração.',
+    'Construo o que a operação exigir, sempre do zero: ERP e CRM sob medida, marketplace SaaS entre marcas e influenciadores, e-commerce com pagamento integrado, portal editorial, app financeiro. Sem template, sem construtor de site, sem dois projetos iguais.',
+    'Uso as inteligências artificiais mais avançadas disponíveis hoje — cada uma naquilo que ela faz melhor, combinadas dentro de um processo que eu desenho e conduzo. Você não contrata ferramenta: contrata o resultado que a orquestração certa entrega.',
+    'Meu padrão de comparação são estúdios internacionais de design e produto. O que mudou não foi a qualidade do resultado — foi o tempo e o custo para chegar nele. É por isso que consigo entregar em dias o que se cobrava em meses.',
+    'Entendo o negócio antes de escrever a primeira linha. É o que separa um sistema que a equipe usa todo dia de um que ela aprende a contornar.',
+    'O nome vem do meu bisavô, que era pintor — pintava por hobby, muitos quadros. Trato cada projeto como ele tratava uma tela: o resultado esperado só aparece com exatidão de técnica. É essa parte do processo que me fascina.',
   ],
-  tags: ['IA Generativa', 'Claude API', 'OpenAI', 'CRM', 'SaaS', 'Automações', 'React', 'Next.js', 'Supabase', 'E-commerce'],
+  tags: ['ERP & CRM sob medida', 'SaaS B2B', 'E-commerce', 'Automação de operação', 'Orquestração de IA', 'Design de produto', 'Estratégia + execução'],
   social: {
     linkedin: 'https://www.linkedin.com/in/mauricio-luzardo-7a7aa7257/',
     github: '#',
@@ -43,16 +45,17 @@ export const PROJECTS_DONE = [
   {
     id: 'solid',
     name: 'SOLID — CRM-LAB',
-    subtitle: 'Sistema operacional da Live Academy Brasil',
-    hook: 'Nenhum CRM do mercado entendia as regras da Kwai: hierarquias próprias, modelo financeiro tripartite, sincronização ao vivo via Voyager API. O SOLID foi construído do zero — um ERP completo com IA, automação via n8n e Claude, que opera uma agência de 400 agenciados sem uma única planilha.',
+    subtitle: 'Sistema operacional da Live Academy Brasil, agência oficial Kwai',
+    hook: 'Nenhum CRM do mercado entendia as regras da Kwai: hierarquias próprias, modelo financeiro tripartite, sincronização ao vivo via Voyager API. O SOLID foi construído do zero — um ERP completo, com automação e IA no core, que opera uma agência de 400 agenciados sem uma única planilha.',
     description:
-      'ERP + CRM em produção para operar a Live Academy Brasil na Kwai. Motor financeiro T1/T2/T3 com regras de repasse por papel, modos official e estimado. Sincronização ao vivo com Kwai Voyager API. WhatsApp Cloud API com state machine de prospecção e Claude Haiku ($0,001/msg) classificando intent, risco e sentimento de cada mensagem em tempo real. 6 workflows n8n automatizando notificações de lead, alerta de meta, lembrete de saque e coach semanal de supervisores via Claude Sonnet. CEO Intelligence com snapshot operacional automático. Scout Premium: agente de discovery e scoring de leads. OPS Kanban com prioridades P0–P3. Churn Radar com early warning por scoring. RBAC em 4 níveis. Design system proprietário Pinky DS v4.5. LGPD-compliant (ip_hash em vez de ip_address). 44 páginas · 28 hooks · 25 Edge Functions Supabase · 175 migrações versionadas.',
-    tech: ['React 18', 'TypeScript', 'Supabase', 'Claude API', 'Claude Haiku', 'WhatsApp Cloud API', 'n8n', 'Recharts', 'Pinky DS v4.5', 'RBAC 4 níveis'],
+      'ERP + CRM em produção para operar a Live Academy Brasil, agência de cooperação oficial da Kwai no Brasil. Motor financeiro T1/T2/T3 com regras de repasse por papel, modos official e estimado. Sincronização ao vivo com Kwai Voyager API. Atendimento por WhatsApp com state machine de prospecção e IA classificando intent, risco e sentimento de cada mensagem em tempo real, a custo marginal por conversa. 6 rotinas automatizadas de notificação de lead, alerta de meta, lembrete de saque e coach semanal de supervisores redigido por IA. CEO Intelligence com snapshot operacional automático. Scout Premium: agente de discovery e scoring de leads. OPS Kanban com prioridades P0–P3. Churn Radar com early warning por scoring. RBAC em 4 níveis. LGPD-compliant (ip_hash em vez de ip_address). 44 páginas · 28 hooks · 25 Edge Functions Supabase · 175 migrações versionadas.',
+    tech: ['ERP + CRM', 'IA aplicada à operação', 'Atendimento automatizado', 'Motor financeiro', 'Tempo real', 'RBAC 4 níveis'],
     status: 'live',
     color: '#084B83',
     glowColor: '#42BFDD',
     link: '#',
     stats: '400 agenciados · 44 páginas · 25 Edge Functions · 270k ops financeiras/mês · 3-6M diamantes Kwai/mês',
+    credits: 'Design system Pinky DS v4.5 por Geison Prestes. Arquitetura, banco, backend, integrações, automações e produto por mim.',
     // Tema do painel lateral — Pinky DS v4.5 (extraído de index.css + tailwind.config.js do CRM-LAB)
     panelStyle: {
       bg:          '#0F172A',   // --background dark
@@ -108,9 +111,9 @@ export const PROJECTS_DONE = [
       { icon: 'Zap',           name: 'Motor Financeiro T1/T2/T3',  desc: 'Cálculo tripartite por agenciado: repasse por papel na hierarquia, modos official e estimado, política versionada por vigência.' },
       { icon: 'Radio',         name: 'Live Radar — Kwai Voyager',  desc: 'Sincronização em tempo real com a API Voyager da Kwai: quem está ao vivo, view count e diamantes por sessão.' },
       { icon: 'BarChart3',     name: 'CEO Intelligence',            desc: 'Snapshot operacional automático: trends de ativação, alertas P0–P3, funil de saúde por supervisor, gerado sem intervenção humana.' },
-      { icon: 'MessageSquare', name: 'Atendimento WhatsApp + IA',   desc: 'WhatsApp Cloud API com Claude Haiku classificando intent, risco e sentimento de cada mensagem. State machine de prospecção captura e qualifica leads automaticamente.' },
+      { icon: 'MessageSquare', name: 'Atendimento com IA',          desc: 'Cada mensagem recebida é classificada por intenção, risco e sentimento em tempo real. A state machine de prospecção captura e qualifica o lead sozinha, sem ninguém ler antes.' },
       { icon: 'Crosshair',     name: 'Scout Premium',               desc: 'Agente de discovery de leads com scoring por rubrica e DNA match vs perfil ideal de streamer. 1.800+ leads scorados.' },
-      { icon: 'Kanban',        name: 'OPS Workspace + n8n',         desc: '6 workflows n8n automatizando notificação de lead, alerta de meta, lembrete de saque e coach semanal de supervisores via Claude Sonnet.' },
+      { icon: 'Kanban',        name: 'OPS Workspace automatizado', desc: '6 rotinas cuidando de notificação de lead, alerta de meta e lembrete de saque — mais um coach semanal escrito para cada supervisor a partir dos números da semana dele.' },
       { icon: 'GitPullRequest',name: 'Pipeline de Prospecção',      desc: 'Funil Kanban com round-robin de distribuição, fila de prospects do WhatsApp, atribuição de supervisor e notificação automática.' },
       { icon: 'AlertCircle',   name: 'Churn Radar + Monitor Metas', desc: 'Early warning com scoring automático: queda vs baseline 3 meses, dias sem live, risco de saída. Barras de progresso de meta mensal por streamer.' },
     ],
@@ -236,6 +239,10 @@ export const PROJECTS_DONE = [
       badgeBg:     '#C41E28',
       badgeColor:  '#FFFFFF',
       badgeBorder: '#C41E28',
+      // tags no mesmo vermelho do selo — o CTA do site inteiro é essa cor
+      tagBg:       '#C41E28',
+      tagColor:    '#FFFFFF',
+      tagBorder:   '#C41E28',
     },
     thumbTheme: {
       primary:      '#C41E28',
@@ -273,15 +280,15 @@ export const PROJECTS_WIP = [
   {
     id: 'lab',
     name: 'Live Academy Brasil',
-    subtitle: 'Operação escalada por sistemas e processos próprios',
+    subtitle: 'Agência de cooperação oficial da Kwai no Brasil',
     description:
-      '+10 mil streamers desenvolvidos. +1 bilhão de diamantes gerados. +30 milhões de audiência mensal. Nada disso seria possível sem os sistemas internos que construí: CRM, automações, relatórios e gestão de performance — tudo integrado.',
+      'Agência de cooperação oficial da Kwai no Brasil, em operação desde 2023. +10 mil streamers desenvolvidos, +1 bilhão de diamantes gerados na plataforma e +30 milhões de audiência mensal. Nada disso escalaria sem os sistemas internos que construí: CRM, automações, relatórios e gestão de performance — tudo integrado.',
     tech: ['Sistemas internos', 'CRM proprietário', 'Automações', 'BI'],
     status: 'wip',
     color: '#1A0020',
     glowColor: '#FF66B3',
     link: '#',
-    stats: '+10k streamers · +1Bi diamantes · +30Mi/mês',
+    stats: 'Agência oficial Kwai · desde 2023 · +10k streamers · +1Bi diamantes · +30Mi/mês',
     images: [
       tela('lab/screen1.webp'),
       tela('lab/screen2.webp'),

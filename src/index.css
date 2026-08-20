@@ -134,3 +134,41 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .livro-amb { animation: none; }
 }
+
+/* ─── Assinatura do Ateliê Monaco ────────────────────────────────────────────
+   Conceito: O GESTO VIRA EXATIDÃO. O M é pintado à esquerda — borda de tinta,
+   irregular — e exato à direita, geometria limpa. Lido da esquerda para a
+   direita, o próprio desenho conta o processo: começa no gesto, chega na
+   precisão. É a frase do Mauricio sobre o bisavô pintor: "exatidão de técnica
+   para chegar ao resultado esperado".
+
+   Duas animações, em sequência:
+   1. assinaM — a tinta é revelada por uma máscara que percorre o caminho do M
+      na ordem da escrita. Ritmo pelo espaçamento dos keyframes, linear entre
+      eles: pausa literal lê como engasgo, não como cuidado.
+   2. resolveTextura — a textura começa cobrindo o M inteiro e recua para a
+      esquerda. O gesto virando exatidão também no tempo.                    */
+@keyframes assinaM {
+  0%   { stroke-dashoffset: 1;    animation-timing-function: cubic-bezier(.38, 0, .68, .62); }
+  22%  { stroke-dashoffset: 0.78; animation-timing-function: linear; }
+  52%  { stroke-dashoffset: 0.49; animation-timing-function: linear; }
+  80%  { stroke-dashoffset: 0.22; animation-timing-function: cubic-bezier(.32, .42, .18, 1); }
+  100% { stroke-dashoffset: 0;    }
+}
+@keyframes resolveTextura {
+  from { transform: translateX(32px); }
+  to   { transform: translateX(0);    }
+}
+.assinatura-traco {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: assinaM 2.9s 0.45s forwards;
+}
+.assinatura-textura {
+  transform: translateX(32px);
+  animation: resolveTextura 1.5s cubic-bezier(.25, .6, .2, 1) 2.6s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .assinatura-traco   { animation: none; stroke-dashoffset: 0; }
+  .assinatura-textura { animation: none; transform: translateX(0); }
+}

@@ -7,6 +7,7 @@ import HUD from './components/UI/HUD'
 import SalesCopy from './components/UI/SalesCopy'
 import SectionPanel from './components/UI/SectionPanel'
 import PlanetDots from './components/UI/PlanetDots'
+import Assinatura from './components/UI/Assinatura'
 
 function Loader() {
   const { active, progress } = useProgress()
@@ -64,6 +65,7 @@ export default function App() {
         <SectionPanel />
       </div>
       <PlanetDots />
+      <Assinatura />
       <Loader />
       <div id="film-grain" aria-hidden="true" />
     </div>
