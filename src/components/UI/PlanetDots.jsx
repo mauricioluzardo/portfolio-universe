@@ -1,15 +1,22 @@
 import { useUniverseStore } from '../../store/universeStore'
 
 const PLANETS = [
-  { id: 'hero',     label: 'Início',   color: '#7B2FF7' },
-  { id: 'projects', label: 'SOLID',    color: '#42BFDD' },
-  { id: 'wip',      label: 'E-commerce', color: '#39FF14' },
-  { id: 'livro',    label: 'Site de livro', color: '#F0AF1E' },
-  { id: 'contact',  label: 'Contato',  color: '#00FFF0' },
+  { id: 'hero',     label: 'Início',         color: '#7B2FF7', t: 0.07 },
+  { id: 'projects', label: 'SOLID CRM',      color: '#42BFDD', t: 0.22 },
+  { id: 'wip',      label: 'E-commerce',     color: '#39FF14', t: 0.38 },
+  { id: 'livro',    label: 'Site Livro',     color: '#F0AF1E', t: 0.54 },
+  { id: 'khepra',   label: 'KHEPRA',         color: '#C8A96E', t: 0.69 },
+  { id: 'monaco',   label: 'MONACO-RE',      color: '#38BDF8', t: 0.83 },
+  { id: 'contact',  label: 'Contato',        color: '#00FFF0', t: 0.98 },
 ]
 
 export default function PlanetDots() {
-  const { nearPlanet, setActivePlanet, panelOpen } = useUniverseStore()
+  const { nearPlanet, setActivePlanet } = useUniverseStore()
+
+  const handleClick = (id, t) => {
+    setActivePlanet(id)
+    window.dispatchEvent(new CustomEvent('navigateToPlanet', { detail: { t } }))
+  }
 
   return (
     <div
@@ -26,12 +33,12 @@ export default function PlanetDots() {
         pointerEvents: 'auto',
       }}
     >
-      {PLANETS.map(({ id, label, color }) => {
+      {PLANETS.map(({ id, label, color, t }) => {
         const isActive = nearPlanet === id
         return (
           <button
             key={id}
-            onClick={() => setActivePlanet(id)}
+            onClick={() => handleClick(id, t)}
             aria-label={`Navegar para ${label}`}
             title={label}
             style={{

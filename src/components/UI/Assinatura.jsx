@@ -103,7 +103,7 @@ export default function Assinatura() {
           color: 'rgba(199,125,255,0.75)',
           marginTop: 2,
         }}>
-          Estúdio digital
+          Sistemas & Soluções Digitais
         </span>
       </span>
     </div>

@@ -6,6 +6,8 @@ import ProjectsPlanet from '../Planets/ProjectsPlanet'
 import WIPPlanet from '../Planets/WIPPlanet'
 import LivroPlanet from '../Planets/LivroPlanet'
 import ContactPlanet from '../Planets/ContactPlanet'
+import KhepraPlanet from '../Planets/KhepraPlanet'
+import MonacoPlanet from '../Planets/MonacoPlanet'
 import ScrollCamera from '../Camera/ScrollCamera'
 import PostProcessing from '../Effects/PostProcessing'
 
@@ -47,7 +49,13 @@ export default function Universe() {
         <LivroPlanet    position={[30, 18, -142]} />
       </Suspense>
       <Suspense fallback={null}>
-        <ContactPlanet  position={[-20, 15, -160]} />
+        <KhepraPlanet   position={[-40, 12, -200]} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <MonacoPlanet   position={[45, -6, -260]}   />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ContactPlanet  position={[-20, 15, -330]} />
       </Suspense>
 
       {/* SalesCopy 3D removido — usando HTML overlay */}

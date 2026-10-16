@@ -8,10 +8,10 @@ const COPY_BLOCKS = [
     // HERO — a câmera passa por aqui vindo de z=80 em direção a z=32
     position: [0, 8, 48],
     lines: [
-      { text: 'NÃO CRIO SITES.', size: 3.2, color: '#FFFFFF', y: 4.5 },
-      { text: 'CRIO OPERAÇÕES.', size: 3.2, color: '#C77DFF', y: 0.5 },
-      { text: '5 anos · sistemas reais · resultados que escalam', size: 1.1, color: '#7B2FF7', y: -2.8 },
-      { text: 'Live Academy Brasil  ·  100+ usuários  ·  +1Bi diamantes gerados', size: 0.75, color: '#6B3FA0', y: -4.5 },
+      { text: 'DESAFIOS COMPLEXOS.', size: 2.8, color: '#FFFFFF', y: 4.5 },
+      { text: 'PRODUTOS REAIS.', size: 2.8, color: '#C77DFF', y: 0.5 },
+      { text: 'Sistemas empresariais · Produtos digitais · IA aplicada', size: 1.0, color: '#7B2FF7', y: -2.8 },
+      { text: 'Ateliê Monaco — Engenharia, arquitetura e execução pragmática', size: 0.75, color: '#6B3FA0', y: -4.5 },
     ],
     fadeIn: 70, fadeOut: 22,
   },
@@ -19,10 +19,10 @@ const COPY_BLOCKS = [
     // PROJECTS — câmera vem de (-62,10,-25) em direção a (-44,10,-58)
     position: [-52, 18, -36],
     lines: [
-      { text: 'RESULTADOS QUE', size: 3.0, color: '#FFFFFF', y: 4 },
-      { text: 'VOCÊ PODE VER.', size: 3.0, color: '#00D4FF', y: 0.2 },
-      { text: 'Não são demos. São sistemas rodando com usuários reais.', size: 1.1, color: '#00AACC', y: -2.5 },
-      { text: 'CRM em produção  ·  E-commerce com checkout  ·  APIs integradas', size: 0.75, color: '#007799', y: -4.1 },
+      { text: 'ENGENHARIA QUE', size: 3.0, color: '#FFFFFF', y: 4 },
+      { text: 'SUSTENTA A OPERAÇÃO.', size: 2.6, color: '#00D4FF', y: 0.2 },
+      { text: 'Sistemas reais em produção, com regras de negócio e estabilidade.', size: 1.0, color: '#00AACC', y: -2.5 },
+      { text: 'Solid CRM · Gestão de ~500 criadores · +200 migrações SQL', size: 0.75, color: '#007799', y: -4.1 },
     ],
     fadeIn: 52, fadeOut: 16,
   },
@@ -30,10 +30,10 @@ const COPY_BLOCKS = [
     // WIP — câmera vem de (40,-4,-82) em direção a (55,-8,-100)
     position: [62, 4, -86],
     lines: [
-      { text: 'O FUTURO DO SEU', size: 2.8, color: '#FFFFFF', y: 3.8 },
-      { text: 'NEGÓCIO ESTÁ AQUI.', size: 2.8, color: '#FF8C42', y: 0.2 },
-      { text: 'Marketplace · IA generativa · Operações de escala.', size: 1.1, color: '#CC5500', y: -2.4 },
-      { text: 'Seu sistema pode ser o próximo mundo neste universo.', size: 0.75, color: '#993300', y: -4.0 },
+      { text: 'AUTONOMIA TÉCNICA', size: 2.8, color: '#FFFFFF', y: 3.8 },
+      { text: 'E EXECUÇÃO COM IA.', size: 2.8, color: '#FF8C42', y: 0.2 },
+      { text: 'Next.js · Orquestração de Agentes · Testes Automatizados', size: 1.0, color: '#CC5500', y: -2.4 },
+      { text: 'A tecnologia certa para a necessidade real do seu negócio.', size: 0.75, color: '#993300', y: -4.0 },
     ],
     fadeIn: 48, fadeOut: 15,
   },
@@ -41,10 +41,10 @@ const COPY_BLOCKS = [
     // CONTACT — câmera vem de (5,14,-148) em direção a (4,16,-158)
     position: [-4, 20, -147],
     lines: [
-      { text: 'CONSTRUA', size: 3.5, color: '#FFFFFF', y: 5.0 },
-      { text: 'SEU MUNDO.', size: 3.5, color: '#00FFF0', y: 0.8 },
-      { text: 'Precisa de sistema, IA ou digital que converte?', size: 1.1, color: '#00CCAA', y: -2.2 },
-      { text: 'Poucos entendem negócio E tecnologia. Eu sou um deles. →', size: 0.75, color: '#008877', y: -3.8 },
+      { text: 'TRANSFORME SEU DESAFIO', size: 2.6, color: '#FFFFFF', y: 5.0 },
+      { text: 'EM PRODUTO REAL.', size: 2.6, color: '#00FFF0', y: 0.8 },
+      { text: 'Sistemas empresariais, produtos digitais e automações inteligentes.', size: 1.0, color: '#00CCAA', y: -2.2 },
+      { text: 'Ateliê Monaco — Arquitetura de soluções e desenvolvimento', size: 0.75, color: '#008877', y: -3.8 },
     ],
     fadeIn: 38, fadeOut: 12,
   },

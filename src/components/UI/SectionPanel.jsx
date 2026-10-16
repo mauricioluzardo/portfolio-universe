@@ -78,6 +78,21 @@ function DesenhoAmb({ nome }) {
   return null
 }
 
+
+// Ambiente Khepra — Decoração suave e hieróglifos egípcios sem corte de viewport (fundo contínuo no painel)
+function AmbienteKhepra() {
+  return (
+    <div aria-hidden="true" style={{
+      position: 'absolute', right: 10, top: 40, bottom: 40, width: 32,
+      display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center',
+      opacity: 0.12, color: '#4E331E', fontFamily: '"Cinzel", serif', fontSize: 22,
+      pointerEvents: 'none', zIndex: 0, userSelect: 'none',
+    }}>
+      <span>𓀀</span><span>𓃭</span><span>𓆣</span><span>𓇳</span><span>𓋹</span><span>𓊽</span><span>𓅃</span><span>𓎬</span>
+    </div>
+  )
+}
+
 function AmbienteLivro() {
   return (
     <div aria-hidden="true" style={{
@@ -477,7 +492,7 @@ function ScreenshotHero({ images, project }) {
                   display: 'flex', alignItems: 'center', paddingLeft: 6, gap: 4,
                 }}>
                   <span style={{
-                    fontSize: 7.5, fontFamily: '"Inter","Roboto",ui-sans-serif', fontWeight: 600,
+                    fontSize: 7.5, fontFamily: '"Inter","Robotão",ui-sans-serif', fontWeight: 600,
                     color: isActive ? primary : t.mutedFg,
                     letterSpacing: '0.04em', lineHeight: 1,
                   }}>
@@ -607,6 +622,170 @@ function ModuleList({ modules, accent = '#42BFDD' }) {
   )
 }
 
+
+function KhepraVisualHeader() {
+  return (
+    <div
+      style={{
+        borderRadius: 6,
+        background: "linear-gradient(145deg, rgba(249,241,220,0.85) 0%, rgba(226,204,160,0.92) 100%), url('/textures/TEX_ui_papiro.jpg')",
+        backgroundSize: 'auto, 320px 320px',
+        border: '2px solid #A07830',
+        padding: '18px 20px',
+        marginBottom: 24,
+        position: 'relative',
+        overflow: 'hidden',
+        boxShadow: 'inset 0 0 24px rgba(110,80,40,0.22), 0 8px 24px rgba(60,40,20,0.18)',
+      }}
+    >
+      {/* Filete superior em ouro e rubrica egípcia */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 3,
+        background: 'linear-gradient(90deg, #962816 0%, #C9A84C 50%, #962816 100%)',
+      }} />
+
+      {/* Cabeçalho do Papiro do Escriba */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, borderBottom: '1px solid rgba(150,40,22,0.2)', paddingBottom: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ color: '#962816', fontSize: 13 }}>𓆣</span>
+          <span style={{
+            fontFamily: '"Cinzel", "Space Grotesk", serif',
+            fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: '#962816', fontWeight: 800,
+          }}>
+            PAPIRO DO ESCRIBA · KITANTITUMBA
+          </span>
+        </div>
+        <span style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 9, color: '#56402A', fontWeight: 700,
+          background: 'rgba(150,40,22,0.08)',
+          padding: '2px 8px', borderRadius: 3,
+          border: '1px solid rgba(150,40,22,0.25)',
+          letterSpacing: '0.08em',
+        }}>
+          LUAU --!STRICT
+        </span>
+      </div>
+
+      {/* Grid com os 4 pilares autorais do projeto */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10,
+        fontFamily: '"Space Grotesk", sans-serif', fontSize: 11,
+      }}>
+        {/* Pilar 1: Modo Extração */}
+        <div style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(3px)', padding: '11px 13px', borderRadius: 4, border: '1px solid rgba(139,30,15,0.22)', boxShadow: '0 2px 6px rgba(86,64,42,0.06)' }}>
+          <div style={{ color: '#8B1E0F', fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 800 }}>
+            Modo Extração & Saque
+          </div>
+          <div style={{ color: '#170F08', fontWeight: 700, marginTop: 2, fontSize: 12.5 }}>
+            Co-op com Física & Tocha
+          </div>
+          <div style={{ color: '#2B1D13', fontSize: 11, marginTop: 3, lineHeight: 1.45 }}>
+            Cesto de envio, vaso de resgate de caídos e óleo limitado (120s) sem relógio.
+          </div>
+        </div>
+
+        {/* Pilar 2: Modo 1v7 */}
+        <div style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(3px)', padding: '11px 13px', borderRadius: 4, border: '1px solid rgba(139,30,15,0.22)', boxShadow: '0 2px 6px rgba(86,64,42,0.06)' }}>
+          <div style={{ color: '#8B1E0F', fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 800 }}>
+            Modo 1 vs 7 Assimétrico
+          </div>
+          <div style={{ color: '#170F08', fontWeight: 700, marginTop: 2, fontSize: 12.5 }}>
+            O Selado vs 7 Arqueólogos
+          </div>
+          <div style={{ color: '#2B1D13', fontSize: 11, marginTop: 3, lineHeight: 1.45 }}>
+            Puzzles de hieróglifos, visão sensorial e caçada rápida nas paredes da tumba.
+          </div>
+        </div>
+
+        {/* Pilar 3: Lógicas & 534 Testes */}
+        <div style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(3px)', padding: '11px 13px', borderRadius: 4, border: '1px solid rgba(139,30,15,0.22)', boxShadow: '0 2px 6px rgba(86,64,42,0.06)' }}>
+          <div style={{ color: '#8B1E0F', fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 800 }}>
+            Netcode & Engenharia
+          </div>
+          <div style={{ color: '#170F08', fontWeight: 700, marginTop: 2, fontSize: 12.5 }}>
+            534 Testes Unitários
+          </div>
+          <div style={{ color: '#2B1D13', fontSize: 11, marginTop: 3, lineHeight: 1.45 }}>
+            Servidor autoritativo, contratos estritos de RemoteEvents e IA da criatura.
+          </div>
+        </div>
+
+        {/* Pilar 4: Assets do Zero */}
+        <div style={{ background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(3px)', padding: '11px 13px', borderRadius: 4, border: '1px solid rgba(139,30,15,0.22)', boxShadow: '0 2px 6px rgba(86,64,42,0.06)' }}>
+          <div style={{ color: '#8B1E0F', fontSize: 9.5, textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 800 }}>
+            Criação Autoral
+          </div>
+          <div style={{ color: '#170F08', fontWeight: 700, marginTop: 2, fontSize: 12.5 }}>
+            Assets 100% do Zero
+          </div>
+          <div style={{ color: '#2B1D13', fontSize: 11, marginTop: 3, lineHeight: 1.45 }}>
+            Tumba modular, O Selado original com élitros/Anúbis e UI papiro real do MET.
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MonacoVisualHeader() {
+  return (
+    <div
+      style={{
+        borderRadius: 8,
+        background: 'linear-gradient(145deg, #070D1A 0%, #03060C 100%)',
+        border: '1px solid rgba(56,189,248,0.3)',
+        padding: '16px 18px',
+        marginBottom: 24,
+        position: 'relative',
+        overflow: 'hidden',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+      }}
+    >
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 2,
+        background: 'linear-gradient(90deg, transparent, #38BDF8, transparent)',
+      }} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+        <span style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase',
+          color: '#38BDF8', fontWeight: 700,
+        }}>
+          MODEL CONTEXT PROTOCOL · SERVER
+        </span>
+        <span style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 10, color: '#38BDF8',
+          background: 'rgba(56,189,248,0.1)',
+          padding: '2px 8px', borderRadius: 4,
+          border: '1px solid rgba(56,189,248,0.25)',
+        }}>
+          NODE.JS ZERO-DEPS
+        </span>
+      </div>
+      <div style={{
+        background: 'rgba(0,0,0,0.55)',
+        padding: '12px 14px',
+        borderRadius: 6,
+        border: '1px solid rgba(56,189,248,0.15)',
+        fontFamily: '"JetBrains Mono", monospace',
+        fontSize: 11,
+        lineHeight: 1.6,
+        color: '#94A3B8',
+      }}>
+        <div style={{ color: '#38BDF8' }}>&gt; mcp.inspect_binary(&quot;app.exe&quot;)</div>
+        <div>[0x0000] 4D 5A | <span style={{ color: '#F0F9FF' }}>IMAGE_DOS_HEADER (MZ)</span></div>
+        <div>[0x003C] 00 00 00 F8 | e_lfanew -&gt; NT_HEADER</div>
+        <div>[0x00F8] 50 45 00 00 | <span style={{ color: '#38BDF8' }}>IMAGE_NT_HEADERS (PE\0\0)</span></div>
+        <div>Machine: <span style={{ color: '#BAE6FD' }}>AMD64 (0x8664)</span> · Subsystem: <span style={{ color: '#BAE6FD' }}>CLI</span></div>
+        <div style={{ color: '#4ADE80', fontSize: 10, marginTop: 4 }}>✓ Sandbox: CANONICAL_PATH_PROTECTED</div>
+      </div>
+    </div>
+  )
+}
+
 function ProjectCard({ project }) {
   const ps       = project.panelStyle
   const hasFull  = project.modules && project.metrics
@@ -630,7 +809,7 @@ function ProjectCard({ project }) {
     : (ps?.id === 'ecommerce' ? 'rgba(8,8,8,0.9)' : 'rgba(30,41,59,0.9)'))
   const tagBorder  = `1px solid ${ps?.tagBorder || ps?.divider || 'rgba(51,65,85,0.7)'}`
   const tagColor   = ps?.tagColor || ps?.titleColor || '#F1F5F9'
-  const tagFont    = ps?.titleFont  || '"Inter","Roboto",ui-sans-serif'
+  const tagFont    = ps?.titleFont  || '"Inter","Robotão",ui-sans-serif'
   const tagRadius  = project.thumbTheme?.borderRadius ?? 9999
 
   return (
@@ -639,10 +818,11 @@ function ProjectCard({ project }) {
       {project.images?.length > 0 && (
         <ScreenshotHero images={project.images} project={project} />
       )}
-      {!project.images?.length && (
-        <div style={{ aspectRatio: '16/9', borderRadius: 0, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
-          <span style={{ fontSize: 11, color: textMuted, fontFamily: titleFont }}>screenshots em breve</span>
-        </div>
+      {!project.images?.length && project.id === 'khepra' && (
+        <KhepraVisualHeader />
+      )}
+      {!project.images?.length && project.id === 'monaco' && (
+        <MonacoVisualHeader />
       )}
 
       {/* Status */}
@@ -685,17 +865,23 @@ function ProjectCard({ project }) {
           </p>
           <div className="space-y-3">
             {project.notes.map(({ title, text }) => (
-              <div key={title} style={{ display: 'flex', gap: 10 }}>
-                <span style={{ color: accent, fontSize: 11, lineHeight: 1.7, flexShrink: 0 }}>▸</span>
-                <div>
+              <div key={title} style={ps?.cardBg ? {
+                background: ps.cardBg,
+                border: `1px solid ${ps.cardBorder || dividerCol}`,
+                borderRadius: 4,
+                padding: '12px 14px',
+                boxShadow: '0 1px 4px rgba(86,64,42,0.06)',
+              } : { display: 'flex', gap: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: ps?.cardBg ? 4 : 0 }}>
+                  <span style={{ color: accent, fontSize: 11, flexShrink: 0 }}>▸</span>
                   <span style={{
-                    fontSize: '13px', fontWeight: 600, color: titleColor,
-                    fontFamily: titleFont, display: 'block', lineHeight: 1.35,
+                    fontSize: '13px', fontWeight: 700, color: titleColor,
+                    fontFamily: titleFont, lineHeight: 1.35,
                   }}>{title}</span>
-                  <span style={{ fontSize: '12.5px', color: textColor, lineHeight: 1.5 }}>
-                    {text}
-                  </span>
                 </div>
+                <p style={{ fontSize: '12.5px', color: textColor, lineHeight: 1.55, margin: 0, paddingLeft: ps?.cardBg ? 16 : 0 }}>
+                  {text}
+                </p>
               </div>
             ))}
           </div>
@@ -754,7 +940,7 @@ function HeroContent() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-xs tracking-[0.4em] text-cyan-400 uppercase mb-2">Sistemas · IA · Operações Digitais</p>
+        <p className="text-xs tracking-[0.4em] text-cyan-400 uppercase mb-2">SOLUÇÕES DIGITAIS · SISTEMAS · IA APLICADA</p>
         <h1 className="text-3xl font-bold text-white leading-tight">{OWNER.name}</h1>
         <p className="text-base text-violet-300 mt-1">{OWNER.title}</p>
       </div>
@@ -762,9 +948,9 @@ function HeroContent() {
       {/* Números de impacto */}
       <div className="grid grid-cols-3 gap-2">
         {[
-          { n: '+10k', label: 'streamers gerenciados' },
-          { n: '+1Bi', label: 'diamantes na Kwai' },
-          { n: '2023', label: 'operando desde' },
+          { n: '5 anos', label: 'liderança operacional' },
+          { n: '~500',   label: 'criadores operados na LAB' },
+          { n: '3 anos', label: 'desenvolvimento prático' },
         ].map(({ n, label }) => (
           <div key={label} className="p-2 text-center" style={{ background: 'rgba(123,47,247,0.08)', border: '1px solid rgba(123,47,247,0.25)' }}>
             <p className="text-lg font-bold text-violet-300">{n}</p>
@@ -807,7 +993,7 @@ function HeroContent() {
 
 // Planeta 2 — SOLID dedicado
 function ProjectsContent() {
-  const solid = PROJECTS_DONE.find(p => p.id === 'solid')
+  const solid = PROJECTS_DONE.find(p => p?.id === 'solid')
   const ps    = solid?.panelStyle
   return (
     <div className="space-y-4">
@@ -827,7 +1013,7 @@ function ProjectsContent() {
 }
 
 function WIPContent() {
-  const voigt = PROJECTS_DONE.find(p => p.id === 'ecommerce')
+  const voigt = PROJECTS_DONE.find(p => p?.id === 'ecommerce')
   const ps    = voigt?.panelStyle
   return (
     <div className="space-y-4">
@@ -848,7 +1034,7 @@ function WIPContent() {
 }
 
 function LivroContent() {
-  const livro = PROJECTS_DONE.find(p => p.id === 'livro')
+  const livro = PROJECTS_DONE.find(p => p?.id === 'livro')
   const ps    = livro?.panelStyle
   return (
     <div className="space-y-4">
@@ -868,6 +1054,46 @@ function LivroContent() {
 }
 
 // Planeta 5 — Faça Parte / Contato
+function KhepraContent() {
+  const khepra = PROJECTS_DONE.find(p => p?.id === 'khepra')
+  const ps     = khepra?.panelStyle
+  return (
+    <div className="space-y-4">
+      {ps && (
+        <div className="flex items-center gap-2">
+          <span style={{
+            fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+            fontFamily: '"Cinzel", "Space Grotesk", serif', fontWeight: 700,
+            padding: '4px 10px', borderRadius: 4,
+            background: ps.badgeBg, color: ps.badgeColor, border: `1px solid ${ps.badgeBorder}`,
+          }}>{ps.badgeLabel}</span>
+        </div>
+      )}
+      {khepra && <ProjectCard project={khepra} />}
+    </div>
+  )
+}
+
+function MonacoContent() {
+  const monaco = PROJECTS_DONE.find(p => p?.id === 'monaco')
+  const ps     = monaco?.panelStyle
+  return (
+    <div className="space-y-4">
+      {ps && (
+        <div className="flex items-center gap-2">
+          <span style={{
+            fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+            fontFamily: '"JetBrains Mono", monospace', fontWeight: 700,
+            padding: '4px 10px', borderRadius: 4,
+            background: ps.badgeBg, color: ps.badgeColor, border: `1px solid ${ps.badgeBorder}`,
+          }}>{ps.badgeLabel}</span>
+        </div>
+      )}
+      {monaco && <ProjectCard project={monaco} />}
+    </div>
+  )
+}
+
 function ContactContent() {
   return (
     <div className="space-y-5">
@@ -875,14 +1101,13 @@ function ContactContent() {
       {/* Headline */}
       <div>
         <p className="text-[10px] tracking-[0.35em] uppercase font-mono text-cyan-400 mb-2">
-          Esta constelação está crescendo
+          ENGENHARIA & DESENVOLVIMENTO DE PRODUTOS
         </p>
         <h2 className="text-2xl font-bold text-white leading-tight">
-          Venha fazer parte.
+          Vamos construir sua próxima solução.
         </h2>
         <p className="text-gray-300 text-sm mt-2 leading-relaxed">
-          Cada planeta aqui foi construído do zero — sistema real, em produção,
-          com resultado mensurável. O próximo pode ser o seu projeto.
+          Cada sistema apresentado aqui nasceu para resolver um problema real, com arquitetura técnica sólida e sustentabilidade operacional. O próximo pode ser o seu.
         </p>
       </div>
 
@@ -908,7 +1133,7 @@ function ContactContent() {
           {/* Slot para o projeto do visitante */}
           <div className="flex items-center gap-3 p-2.5 border border-dashed border-white/15">
             <div className="w-2 h-2 rounded-full shrink-0 bg-white/20" />
-            <p className="text-gray-500 text-xs italic">Seu projeto aqui →</p>
+            <p className="text-gray-500 text-xs italic">Seu próximo sistema aqui →</p>
           </div>
         </div>
       </div>
@@ -916,11 +1141,11 @@ function ContactContent() {
       {/* O que posso entregar */}
       <div className="space-y-1.5">
         {[
-          'Site ou sistema completo do zero',
-          'IA integrada à operação, onde ela realmente resolve',
-          'CRM, ERP ou plataforma SaaS',
-          'Automações que eliminam trabalho manual',
-          'Estratégia digital + execução técnica',
+          'Sistemas empresariais e plataformas internas sob medida',
+          'Automação de processos e agentes de IA com guardrails rigorosos',
+          'Produtos digitais completos e plataformas comerciais',
+          'Arquitetura de software, integração de APIs e banco de dados',
+          'Auditoria técnica, refatoração e otimização de confiabilidade',
         ].map(item => (
           <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
             <span className="text-cyan-400 shrink-0 text-xs">▸</span>
@@ -938,7 +1163,7 @@ function ContactContent() {
           color: '#fff',
           pointerEvents: 'auto',
         }}>
-        Quero fazer parte desta constelação →
+        Iniciar conversa sobre seu projeto →
       </a>
 
       <div className="space-y-2 pt-1 border-t border-white/10">
@@ -978,6 +1203,8 @@ const PANEL_CONTENT = {
   projects: ProjectsContent,
   wip: WIPContent,
   livro: LivroContent,
+  khepra: KhepraContent,
+  monaco: MonacoContent,
   contact: ContactContent,
 }
 
@@ -985,18 +1212,22 @@ const PANEL_CONTENT = {
 // Define a identidade da moldura do painel (fundo, borda, acento) por planeta.
 // Sem entrada aqui, o painel cai no preto padrao mesmo com panelStyle definido.
 const PLANET_PROJECT = {
-  projects: () => PROJECTS_DONE.find(p => p.id === 'solid'),
-  wip:      () => PROJECTS_DONE.find(p => p.id === 'ecommerce'),
-  livro:    () => PROJECTS_DONE.find(p => p.id === 'livro'),
+  projects: () => PROJECTS_DONE.find(p => p?.id === 'solid'),
+  wip:      () => PROJECTS_DONE.find(p => p?.id === 'ecommerce'),
+  livro:    () => PROJECTS_DONE.find(p => p?.id === 'livro'),
+  khepra:   () => PROJECTS_DONE.find(p => p?.id === 'khepra'),
+  monaco:   () => PROJECTS_DONE.find(p => p?.id === 'monaco'),
 }
 
-const PLANET_ORDER = ['hero', 'projects', 'wip', 'livro', 'contact']
+const PLANET_ORDER = ['hero', 'projects', 'wip', 'livro', 'khepra', 'monaco', 'contact']
 const PLANET_META = {
-  hero:     { label: 'Início',  color: '#7B2FF7', t: 0.08 },
-  projects: { label: 'SOLID',   color: '#42BFDD', t: 0.29 },
-  wip:      { label: 'E-commerce', color: '#39FF14', t: 0.55 },
-  livro:    { label: 'Site de livro', color: '#F0AF1E', t: 0.76 },
-  contact:  { label: 'Contato', color: '#00FFF0', t: 0.95 },
+  hero:     { label: 'Início',       color: '#7B2FF7', t: 0.07 },
+  projects: { label: 'SOLID',        color: '#42BFDD', t: 0.22 },
+  wip:      { label: 'E-commerce',   color: '#39FF14', t: 0.38 },
+  livro:    { label: 'Site de livro',color: '#F0AF1E', t: 0.54 },
+  khepra:   { label: 'Khepra',       color: '#C8A96E', t: 0.69 },
+  monaco:   { label: 'Monaco RE',    color: '#38BDF8', t: 0.83 },
+  contact:  { label: 'Contato',      color: '#00FFF0', t: 0.98 },
 }
 
 export default function SectionPanel() {
@@ -1134,19 +1365,23 @@ export default function SectionPanel() {
           padding: isMobile
             ? '0 20px calc(env(safe-area-inset-bottom, 0px) + 40px)'
             : '56px 20px 20px',
-          background: panelBg,
+          background: ps?.bgImage
+            ? `${ps.bgImage} repeat ${panelBg}`
+            : panelBg,
+          backgroundSize: ps?.bgSize || 'auto',
           borderLeft: isMobile ? 'none' : `1px solid ${panelBorder}`,
           borderTop: isMobile ? `1px solid ${panelBorder}` : 'none',
           borderRadius: isMobile ? '20px 20px 0 0' : 0,
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          backdropFilter: ps?.bgImage ? undefined : 'blur(20px)',
+          WebkitBackdropFilter: ps?.bgImage ? undefined : 'blur(20px)',
         }}
       >
         {isMobile ? (
           <div style={{
             position: 'sticky', top: 0, zIndex: 1,
             padding: '8px 0 10px',
-            background: panelBg,
+            background: ps?.bgImage ? `${ps.bgImage} repeat ${panelBg}` : panelBg,
+            backgroundSize: ps?.bgSize || 'auto',
             marginBottom: 14,
           }}>
             {/* Accent gradient bar at very top of sheet */}
@@ -1198,6 +1433,7 @@ export default function SectionPanel() {
           </button>
         )}
         {activePlanet === 'livro' && <AmbienteLivro />}
+        {activePlanet === 'khepra' && <AmbienteKhepra />}
         {Content && (
           <div style={{ position: 'relative', zIndex: 1 }}>
             <Content />

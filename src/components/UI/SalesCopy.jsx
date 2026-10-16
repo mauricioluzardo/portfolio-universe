@@ -1,65 +1,81 @@
-import { useRef, useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useUniverseStore } from '../../store/universeStore'
 
-// ─── TIMING MASTER TABLE ──────────────────────────────────────────────────────
-// Regra: texto começa ANTES do painel para já estar visível quando ele abre.
-// PLANET_ZONES (painel)  vs  ZONES (texto overlay):
+// ─── ZONES — textos sincronizados com a jornada de scroll ────────────────────
+// Regra: texto começa ~0.03 antes do painel lateral abrir para já estar
+// visível no momento do encontro com o planeta.
 //
-//  Planeta   Painel abre   Texto começa   Painel fecha  Texto some
-//  ─────────────────────────────────────────────────────────────────────────────
-//  hero      t=0.03        t=-0.10 (já visível no load)   0.13   0.13
-//  projects  t=0.19        t=0.16                          0.40   0.40
-//  wip       t=0.45        t=0.42                          0.62   0.62
-//  livro     t=0.70        t=0.67                          0.83   0.83
-//  contact   t=0.90        t=0.87                          0.99   1.00
-//
-// NÃO ALTERAR estes valores sem recalibrar os dois sistemas juntos.
-// São 20 waypoints (t = índice/19). LOOK_TARGETS vira a câmera para
-// projects em t=0.158, wip em t=0.421, livro em t=0.684, contact em t=0.895.
+// Planetas na jornada (28 waypoints, t = índice / 27):
+// 1. Hero:      t=0.07  (Início)
+// 2. Projects:  t=0.22  (SOLID CRM)
+// 3. WIP:       t=0.38  (E-commerce que Converte)
+// 4. Livro:     t=0.54  (livrodoadriano.com.br — Livro + Audiolivro)
+// 5. Khepra:    t=0.69  (KHEPRA: The Last Tomb — Terror 1v7 Roblox Luau strict)
+// 6. Monaco:    t=0.83  (MONACO-RE-MCP — Servidor de Análise Binária)
+// 7. Contact:   t=0.98  (Contato / Fechamento Solitário)
 // ─────────────────────────────────────────────────────────────────────────────
+
 const ZONES = [
   {
     tMin: -0.10, tMax: 0.13, // hero: visível desde o load, some em t=0.13
-    line1: 'SISTEMAS QUE',
-    line2: 'TRABALHAM POR VOCÊ.',
-    sub: 'Construo operações digitais completas — CRM, SaaS, e-commerce e IA — que escalam sem precisar de você no meio do processo. Cada planeta aqui é um sistema real.',
-    micro: 'Desde 2023 · Live Academy Brasil, agência oficial Kwai · +10k streamers desenvolvidos',
+    line1: 'TECNOLOGIA QUE',
+    line2: 'RESOLVE O PROBLEMA.',
+    sub: 'Não me limito a ferramentas ou metodologias. Investigo desafios complexos, encontro caminhos tecnicamente viáveis e construo sistemas reais, produtos digitais e automações funcionais.',
+    micro: 'Liderança operacional · Desenvolvimento com IA pragmática · Sistemas em produção',
     color: '#C77DFF',
     glow: '#7B2FF7',
   },
   {
-    tMin: 0.16, tMax: 0.40, // SOLID: texto entra 0.03 antes do painel (t=0.19)
-    line1: 'SOLID.',
-    line2: 'ZERO PLANILHA.',
-    sub: '400 agenciados. Motor financeiro T1/T2/T3. Inteligência executiva automática. Prospecção com IA. Atendimento que classifica sozinho. Construído do zero porque nenhum CRM do mercado entendia a operação.',
-    micro: '44 páginas · 210k registros · 270k operações financeiras/mês · IA no core da operação',
+    tMin: 0.14, tMax: 0.29, // SOLID: texto entra antes do painel (t=0.17)
+    line1: 'SOLID CRM.',
+    line2: 'OPERAÇÃO REAL.',
+    sub: 'Plataforma de inteligência e gestão da Live Academy Brasil. 6 operadores gerenciando ~500 criadores de lives. Motor financeiro, atendimento com IA e zero planilhas na operação.',
+    micro: 'Em produção desde mar/2026 · +200 migrações SQL · Pinky DS v4.5',
     color: '#42BFDD',
     glow: '#084B83',
   },
   {
-    tMin: 0.42, tMax: 0.62, // e-commerce: texto entra 0.03 antes do painel (t=0.45)
+    tMin: 0.30, tMax: 0.45, // e-commerce: texto entra antes do painel (t=0.33)
     line1: 'E-COMMERCE',
     line2: 'QUE CONVERTE.',
-    sub: 'Loja completa com Mercado Pago nativo, carrinho persistente, checkout fluido e design mobile-first. Construída para converter — não para impressionar no Behance.',
-    micro: 'Next.js · Mercado Pago · Mobile-first · Demonstração',
+    sub: 'Loja com arquitetura moderna Next.js, checkout fluido com Mercado Pago nativo, carrinho persistente e design mobile-first refinado.',
+    micro: 'Next.js · React · Mercado Pago nativo · Mobile-first',
     color: '#39FF14',
     glow: '#1B4332',
   },
   {
-    tMin: 0.67, tMax: 0.83, // livro: texto entra 0.03 antes do painel (t=0.70)
-    line1: 'QUANDO O SITE',
-    line2: 'SAI DA FRENTE.',
-    sub: 'Site de um livro independente. O trabalho aqui foi técnico e discreto: abrir rápido no celular, ser confortável de ler à noite e não competir com a história. Capítulos de amostra abertos antes de qualquer decisão.',
-    micro: 'Feito para ler no celular · Capítulos de amostra · No ar',
+    tMin: 0.46, tMax: 0.60, // livro: texto entra antes do painel (t=0.49)
+    line1: 'LIVRO & AUDIOLIVRO.',
+    line2: 'CONCEPÇÃO REAL.',
+    sub: 'livrodoadriano.com.br: produto integral concebido a partir dos relatos reais do pai sobre o Adriano (autista nível 3). Design editorial com seus hiperfocos, audiolivro com voz real do escritor e mais de 300 vendas registradas.',
+    micro: 'Relatos reais · Hiperfocos do Adriano · Audiolivro com voz real · +300 vendas',
     color: '#F0AF1E',
     glow: '#22262E',
   },
   {
-    tMin: 0.87, tMax: 1.00, // contact: texto entra 0.03 antes do painel (t=0.90)
-    line1: 'VENHA FAZER PARTE',
-    line2: 'DESTA CONSTELAÇÃO.',
-    sub: 'Cada planeta aqui foi construído do zero. O próximo pode ser o seu projeto. SaaS, CRM, portal com IA, e-commerce — vamos conversar.',
-    micro: 'Projetos sob medida · Resposta em até 24h · Próximos planetas em formação →',
+    tMin: 0.61, tMax: 0.75, // khepra: texto entra antes do painel (t=0.64)
+    line1: 'KHEPRA.',
+    line2: 'ENGENHARIA ROBLOX.',
+    sub: 'Terror assimétrico multijogador 1v7 construído com arquitetura profissional: Luau com tipagem estrita, 534 testes automatizados e netcode autoritativo.',
+    micro: '534 testes unitários · Luau --!strict · Netcode autoritativo · 1v7',
+    color: '#C8A96E',
+    glow: '#3A2808',
+  },
+  {
+    tMin: 0.76, tMax: 0.89, // monaco: texto entra antes do painel (t=0.79)
+    line1: 'MONACO-RE.',
+    line2: 'INFRAESTRUTURA MCP.',
+    sub: 'Servidor Model Context Protocol em Node.js puro com zero dependências para análise estrutural de binários PE, ELF, Mach-O e metadados .NET com sandbox estrito.',
+    micro: 'Zero deps · Sandboxing rigoroso · Protocolo MCP · Open-source',
+    color: '#38BDF8',
+    glow: '#001830',
+  },
+  {
+    tMin: 0.90, tMax: 1.00, // contact: o grande fechamento final (t=0.93..1.00)
+    line1: 'VAMOS CONSTRUIR',
+    line2: 'SEU PRÓXIMO SISTEMA.',
+    sub: 'Seja um CRM corporativo, automação com agentes de IA, plataforma SaaS ou produto digital completo: transformamos necessidades complexas em engenharia funcional.',
+    micro: 'Sistemas sob medida · IA aplicada a processos · Resposta em até 24h',
     color: '#00FFF0',
     glow: '#00CCAA',
   },
